@@ -1,0 +1,8 @@
+{
+  "folders": [
+    { "name": "Cursor", "path": "." }
+  ],
+  "settings": {
+    "terminal.integrated.cwd": "${workspaceFolder}/../Git"
+  }
+}

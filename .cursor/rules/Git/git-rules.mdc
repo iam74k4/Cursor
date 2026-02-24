@@ -1,0 +1,49 @@
+---
+description: Git workflow (main/develop), commit format, branch/tag naming
+alwaysApply: true
+---
+
+# Git Rules
+
+## Commit messages
+
+Follow Conventional Commits.
+
+- **Format**: `type(scope): subject` (first line ≤50 chars)
+- **type**: `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore`
+- **scope**: optional. e.g. `auth`, `api`, `ui`
+- **subject**: lowercase, imperative, no period at end
+
+Examples:
+- `feat(auth): add two-factor login`
+- `fix(api): correct user list pagination`
+- `docs: update README setup steps`
+
+## When to commit
+
+- Commit when a unit of work is completed. Do not leave uncommitted changes at session end or when switching tasks.
+- **Granularity**: One logical change per commit. Do not mix unrelated changes; do not split one logical change into many trivial commits. Keep commits reviewable and easy to revert.
+- **Do not commit**: Auto-generated summary docs (e.g. REVIEW.md, SUMMARY.md, CHANGES.md). Prefer not creating them; if created, do not add to the repo — use README or existing docs instead.
+
+## Workflow
+
+- **main**: production branch. Auto-deploys to Railway on merge. No direct commits; merge from `develop` when releasing.
+- **develop**: default integration branch. Merge all `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here.
+- **feature/fix branches**: used for development and local testing. Test locally before merging to `develop`.
+- Flow: branch from `develop` → develop + test locally → merge to `develop` → when ready to release, merge `develop` → `main` and tag (e.g. `v1.0.0`).
+
+## Versioning (SemVer)
+
+Format: `MAJOR.MINOR.PATCH` (e.g. `v1.2.3`).
+
+- **MAJOR**: breaking changes (incompatible API/behavior). Bump when users must change code or config.
+- **MINOR**: new features, backward-compatible. Bump for new functionality.
+- **PATCH**: bug fixes, backward-compatible. Bump for fixes only.
+
+Examples: new API → minor; remove deprecated API → major; fix crash → patch.
+
+## Naming
+
+- **Branches**: `feature/xxx` or `feat/xxx`, `fix/xxx` or `bugfix/xxx`, `docs/xxx`
+  - e.g. `feature/user-profile`, `fix/login-timeout`
+- **Tags**: semantic version, e.g. `v1.0.0`

@@ -1,0 +1,21 @@
+---
+description: Context7 MCP でライブラリドキュメントを取得するルール
+alwaysApply: false
+globs: ["**/*"]
+---
+
+# Context7 Integration
+
+以下の質問や場面では、Context7 MCP を使って最新のドキュメントを取得する。
+
+- ライブラリの API やドキュメント
+- フレームワークのセットアップ・設定
+- 外部パッケージのコード例
+- 特定ライブラリ機能の使い方
+
+Context7 で取得した最新ドキュメントを参照し、学習データのみに依存しないこと。
+
+プロンプト例:
+- `use context7 to show me how to set up middleware in Next.js 15`
+- `use context7 for Prisma query examples with relations`
+- `use context7 with /supabase/supabase for authentication docs`

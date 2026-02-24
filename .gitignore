@@ -1,0 +1,5 @@
+# ローカル・環境依存のワークスペース定義（追跡しない）
+*.code-workspace
+
+# OS
+.DS_Store

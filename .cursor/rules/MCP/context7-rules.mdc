@@ -1,7 +1,6 @@
 ---
 description: Context7 MCP でライブラリドキュメントを取得するルール
-alwaysApply: false
-globs: ["**/*"]
+alwaysApply: true
 ---
 
 # Context7 Integration

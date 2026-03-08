@@ -1,5 +1,7 @@
 # Cursor
 
+![License](https://img.shields.io/github/license/iam74k4/Cursor)
+
 Cursor IDE の共有ルール・ドキュメント・ワークスペース設定を管理するリポジトリ。
 
 ## 概要
@@ -43,3 +45,7 @@ Cursor IDE の共有ルール・ドキュメント・ワークスペース設定
 | `readme-rules.mdc` | `**/README.md` 編集時 | README の構造・バッジ・スタイル |
 | `context7-rules.mdc` | 常時適用 | ライブラリドキュメント取得時に Context7 MCP を使用 |
 | `drawio-rules.mdc` | 要時参照 | drawio MCP で図・ダイアグラムを作成・編集する際のガイド |
+
+## License
+
+[MIT](LICENSE)

@@ -5,6 +5,6 @@
     { "name": "DiscordBot", "path": "../Git/DiscordBot" }
   ],
   "settings": {
-    "terminal.integrated.cwd": "${workspaceFolder}/../Git"
+    "terminal.integrated.cwd": "${workspaceFolder}/.."
   }
 }

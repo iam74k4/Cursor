@@ -1,0 +1,33 @@
+---
+description: drawio MCP で図・ダイアグラムを作成・編集するルール
+alwaysApply: false
+---
+
+# drawio MCP Integration
+
+以下の場面では drawio MCP（user-drawio）を使って図を作成・編集する。
+
+- アーキテクチャ図、フロー図、ER 図、シーケンス図などの作成
+- 既存の drawio 図の編集・修正
+- レイヤー分けや注釈の追加
+
+## 使い方
+
+1. **ビルトインエディタ**: MCP 起動後、ブラウザで http://localhost:3000/ を開く
+2. **ツール呼び出し**: `call_mcp_tool` で user-drawio のツールを呼ぶ
+3. **ツールスキーマ**: 呼び出し前に MCP のツールディスクリプタ（user-drawio/tools/*.json）でパラメータを確認する
+
+## 主なツール
+
+| 用途 | ツール例 |
+|------|----------|
+| 図の確認 | `get-selected-cell`, `list-paged-model`, `get-shape-categories` |
+| 図の編集 | `add-rectangle`, `add-edge`, `add-cell-of-shape`, `edit-cell` |
+| 削除 | `delete-cell-by-id` |
+| レイヤー | `list-layers`, `create-layer`, `set-active-layer` |
+
+## drawio が使えない場合
+
+- **代替**: Mermaid 図を Markdown に直接記述。GitHub がネイティブでレンダリングするため、画像エクスポート不要。
+- **確認**: Cursor Settings > MCP で drawio のステータスを確認。エラー時は `npx -y drawio-mcp-server --editor --http-port 3000` を手動実行してエラー内容を確認。
+- **スクリプト**: `mcp.json` は `.cursor/scripts/drawio-mcp.sh` を経由。既存プロセス終了→ポート解放→起動の順でポート競合を防ぐ。

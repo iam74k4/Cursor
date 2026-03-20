@@ -27,11 +27,13 @@ Examples:
 
 ## Workflow
 
+**Summary**: Day-to-day work branches from **`develop`** (`feature/*`, `fix/*`, etc.). **`main`** moves only when cutting a release (merge from `develop`, then tag). That keeps production history stable and integration separate.
+
 - **Always branch**: Create a feature/fix branch before starting any work. Do not commit directly to `main` or `develop`.
-- **main**: production branch. Deploy target is defined per project. No direct commits; merge from `develop` when releasing.
-- **develop**: default integration branch. Merge all `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here.
-- **feature/fix branches**: used for development and local testing. Test locally before merging to `develop`.
-- Flow: branch from `develop` → develop + test locally → merge to `develop` → when ready to release, merge `develop` → `main` and tag (e.g. `v1.0.0`).
+- **main**: production branch. Deploy target is defined per project. Update **only at release time**: merge `develop` → `main` (no feature PRs into `main`). Tag the release on `main` (e.g. `v1.0.0`).
+- **develop**: integration branch for ongoing work. Merge all `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here. This is the default base branch for new PRs.
+- **feature/fix branches**: branch from **`develop`**, not from `main`. Develop and test locally, then merge back to `develop`.
+- Flow: `develop` → topic branch → PR to `develop` → when ready to release: `develop` → `main` + tag.
 
 ### Long-lived branches: creating `main` and `develop`
 

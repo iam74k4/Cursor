@@ -27,10 +27,30 @@ Examples:
 
 ## Workflow
 
+- **Always branch**: Create a feature/fix branch before starting any work. Do not commit directly to `main` or `develop`.
 - **main**: production branch. Deploy target is defined per project. No direct commits; merge from `develop` when releasing.
 - **develop**: default integration branch. Merge all `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here.
 - **feature/fix branches**: used for development and local testing. Test locally before merging to `develop`.
 - Flow: branch from `develop` → develop + test locally → merge to `develop` → when ready to release, merge `develop` → `main` and tag (e.g. `v1.0.0`).
+
+### Long-lived branches: creating `main` and `develop`
+
+**New repository**
+
+1. **First push**: Use `main` as the initial default (rename if needed: `git branch -M main`). Push: `git push -u origin main`.
+2. **Add `develop`**: `git checkout main && git pull && git checkout -b develop && git push -u origin develop`.
+3. **Hosting default branch**: Set the remote’s **default branch** to `develop` so new PRs/MRs target integration, not production. Keep `main` for releases only.
+4. **Day-to-day**: After `develop` exists, new work always branches from `develop` (not from `main`).
+
+**Repo that only has `main` today**
+
+1. Update `main` locally (`git checkout main && git pull`).
+2. `git checkout -b develop && git push -u origin develop`, then set default branch to `develop` on the host.
+3. Open PRs into `develop`; release by merging `develop` → `main` (or equivalent protected flow).
+
+**Bootstrapping exception**: The very first commits (e.g. empty repo, `README`, `.gitignore`, license) may land on `main` once. After `develop` exists, treat `main` as read-only for feature work and use topic branches from `develop`.
+
+**Optional (recommended on GitHub/GitLab)**: Protect `main` and `develop` (require PR/review, block force-push). Allow merges to `main` only from `develop` or release branches per team policy.
 
 ## Versioning (SemVer)
 

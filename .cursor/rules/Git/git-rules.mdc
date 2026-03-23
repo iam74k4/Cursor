@@ -5,37 +5,23 @@ alwaysApply: true
 
 # Git Rules
 
-## Commit messages / コミットメッセージ
+## Commit messages
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/).  
-[Conventional Commits](https://www.conventionalcommits.org/) に従う。
+Follow [Conventional Commits](https://www.conventionalcommits.org/).
 
-### Format / 形式
+- **Format**: `type(scope): subject` (first line ≤50 chars)
+- **type**: `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore`
+- **scope**: optional. e.g. `auth`, `api`, `ui`, `git`, `mcp`, `cursor`
+- **subject**: lowercase, imperative mood, no trailing period
+- **Language**: subject and body (if any) are **English only** — no non-English text in the commit message; keeps hooks, changelogs, and parsers consistent.
 
-| | English | 日本語 |
-|---|---------|--------|
-| **Pattern** | `type(scope): subject` (first line ≤50 chars) | 1行目は `種別(スコープ): 件名`（全角除き50文字以内を目安） |
-| **type** | `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore` | 上記の英語キーワードをそのまま使う（ツール互換のため） |
-| **scope** | Optional. e.g. `auth`, `api`, `ui` | 任意。影響範囲を示す短い英語（例: `auth`, `git`, `mcp`） |
-| **subject** | Lowercase, imperative mood, no trailing period | 英語の命令形・小文字始まり・末尾にピリオドなし |
-
-### Message language / メッセージの言語
-
-- **Subject (first line)**: **English only** — hooks, changelogs, and `type(scope):` parsers expect ASCII Conventional Commit subjects.  
-  **件名（1行目）**: **英語のみ**（解析ツール・CHANGELOG 生成との互換のため）。
-
-- **Body (optional, after a blank line)**: **English only** for context, rationale, or breaking-change notes. Do **not** add Japanese (or other non-English) supplementary text in the commit message.  
-  **本文（空行のあと、任意）**: **英語のみ**。コミットメッセージ内に日本語などによる補足を書かない。
-
-### Examples (generic) / 汎用例
+Examples:
 
 - `feat(auth): add two-factor login`
 - `fix(api): correct user list pagination`
 - `docs: update README setup steps`
 
-### Examples from this repository (historical) / 本リポジトリの過去例
-
-Same style as past commits in this workspace / このワークスペースの過去コミットと同じスタイル:
+Examples from this repository (historical):
 
 - `docs(git): switch Cursor repo to main-only workflow`
 - `docs(git): state main updates only at release`

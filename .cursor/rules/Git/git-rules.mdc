@@ -5,36 +5,65 @@ alwaysApply: true
 
 # Git Rules
 
-## Commit messages
+## Commit messages / コミットメッセージ
 
-Follow Conventional Commits.
+Follow [Conventional Commits](https://www.conventionalcommits.org/).  
+[Conventional Commits](https://www.conventionalcommits.org/) に従う。
 
-- **Format**: `type(scope): subject` (first line ≤50 chars)
-- **type**: `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore`
-- **scope**: optional. e.g. `auth`, `api`, `ui`
-- **subject**: lowercase, imperative, no period at end
+### Format / 形式
 
-Examples (generic):
+| | English | 日本語 |
+|---|---------|--------|
+| **Pattern** | `type(scope): subject` (first line ≤50 chars) | 1行目は `種別(スコープ): 件名`（全角除き50文字以内を目安） |
+| **type** | `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore` | 上記の英語キーワードをそのまま使う（ツール互換のため） |
+| **scope** | Optional. e.g. `auth`, `api`, `ui` | 任意。影響範囲を示す短い英語（例: `auth`, `git`, `mcp`） |
+| **subject** | Lowercase, imperative mood, no trailing period | 英語の命令形・小文字始まり・末尾にピリオドなし |
+
+### Message language / メッセージの言語
+
+- **Subject (first line)**: Write in **English** so hooks, changelogs, and `type(scope):` parsers stay consistent.  
+  **件名（1行目）**: **英語**で書く（解析ツール・CHANGELOG 生成との互換のため）。
+
+- **Body (optional, after a blank line)**: Use **English**, **Japanese**, or **both** to explain context, rationale, or breaking changes.  
+  **本文（空行のあと、任意）**: 背景・理由・破壊的変更の注意などを**英語**、**日本語**、または**併記**でよい。
+
+- **Optional bilingual subject** (only if the team agrees and the line stays ≤50 chars): `type(scope): english summary（日本語の一言）` — keep the English part valid on its own.  
+  **任意の日英併記件名**（合意がある場合のみ、1行目が長くなりすぎないように）: 英語部分だけで意味が通じるようにし、括弧や「 / 」で短い日本語を添える。
+
+### Examples (generic) / 汎用例
+
+English subject only:
+
 - `feat(auth): add two-factor login`
 - `fix(api): correct user list pagination`
 - `docs: update README setup steps`
 
-### Examples from this repository (historical)
+Subject + Japanese body (example shape):
 
-Use the same style as past commits in this workspace:
+```
+docs(git): document tag-on-push rule
 
-- `docs(git): switch Cursor repo to main-only workflow`
-- `docs(git): state main updates only at release`
-- `docs(git): clarify main and develop branch setup`
-- `docs: add license badge and MIT LICENSE`
-- `feat(mcp): add drawio MCP integration with rules and scripts`
-- `docs: update MCP docs and context7 rule`
-- `docs: add README`
-- `chore: improve gitignore coverage`
-- `chore: add multi-root workspace folders`
-- `chore(cursor): track workspace file in repo`
-- `docs(cursor): generalize MCP env and git workflow description`
-- `chore(cursor): add rules and MCP documentation`
+プッシュ時に必ずセマンティックバージョンのタグを付ける運用を追記した。
+```
+
+### Examples from this repository (historical) / 本リポジトリの過去例
+
+Same style as past commits in this workspace / このワークスペースの過去コミットと同じスタイル:
+
+| English (as committed) | 日本語（意味の対訳） |
+|------------------------|----------------------|
+| `docs(git): switch Cursor repo to main-only workflow` | Cursor 用リポジトリを main のみ運用に切り替えた |
+| `docs(git): state main updates only at release` | リリース時のみ main を更新する旨を記載 |
+| `docs(git): clarify main and develop branch setup` | main / develop の扱いを明確化 |
+| `docs: add license badge and MIT LICENSE` | ライセンスバッジと MIT LICENSE を追加 |
+| `feat(mcp): add drawio MCP integration with rules and scripts` | drawio MCP とルール・スクリプトを追加 |
+| `docs: update MCP docs and context7 rule` | MCP ドキュメントと context7 ルールを更新 |
+| `docs: add README` | README を追加 |
+| `chore: improve gitignore coverage` | gitignore の網羅を改善 |
+| `chore: add multi-root workspace folders` | マルチルート用ワークスペースフォルダを追加 |
+| `chore(cursor): track workspace file in repo` | ワークスペースファイルをリポジトリで追跡 |
+| `docs(cursor): generalize MCP env and git workflow description` | MCP 環境と Git ワークフローの記述を一般化 |
+| `chore(cursor): add rules and MCP documentation` | ルールと MCP ドキュメントを追加 |
 
 ## When to commit
 

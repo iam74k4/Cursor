@@ -14,10 +14,27 @@ Follow Conventional Commits.
 - **scope**: optional. e.g. `auth`, `api`, `ui`
 - **subject**: lowercase, imperative, no period at end
 
-Examples:
+Examples (generic):
 - `feat(auth): add two-factor login`
 - `fix(api): correct user list pagination`
 - `docs: update README setup steps`
+
+### Examples from this repository (historical)
+
+Use the same style as past commits in this workspace:
+
+- `docs(git): switch Cursor repo to main-only workflow`
+- `docs(git): state main updates only at release`
+- `docs(git): clarify main and develop branch setup`
+- `docs: add license badge and MIT LICENSE`
+- `feat(mcp): add drawio MCP integration with rules and scripts`
+- `docs: update MCP docs and context7 rule`
+- `docs: add README`
+- `chore: improve gitignore coverage`
+- `chore: add multi-root workspace folders`
+- `chore(cursor): track workspace file in repo`
+- `docs(cursor): generalize MCP env and git workflow description`
+- `chore(cursor): add rules and MCP documentation`
 
 ## When to commit
 
@@ -32,7 +49,7 @@ Examples:
 - **Always branch**: Create a feature/fix branch from up-to-date `main` before starting work. Do not commit directly to `main` (use a topic branch, then merge).
 - **main**: single long-lived branch. Default on the remote. Merge `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here after review or local verification.
 - **feature/fix branches**: branch from **`main`**. Example flow: `git checkout main && git pull` → `git checkout -b feat/my-change` → work → merge (or PR) into `main`.
-- **Releases**: Tag on `main` when you cut a version (e.g. `v1.0.0`). Deploy target is defined per project.
+- **Releases**: Every push that updates a remote branch must include a new semantic version tag on the pushed tip commit (see **Push and version tags** below). Deploy target is defined per project.
 
 **New repository**
 
@@ -42,15 +59,57 @@ Examples:
 
 **Optional (recommended on GitHub/GitLab)**: Protect `main` (require PR/review, block force-push) if the host supports it.
 
+## Push and version tags
+
+**Rule:** Whenever you `git push` a branch to the remote, you **must** also create and push a **new** semantic version tag that points at the commit the remote branch will reference after the push (the tip you are publishing).
+
+1. Determine the next `vMAJOR.MINOR.PATCH` using **Versioning (SemVer)** below and the latest existing tag (`git tag -l 'v*' --sort=-v:refname | head -1`). If no tag exists yet, start at **`v0.1.0`** unless the project already documents a different initial version.
+2. Create an **annotated** tag: `git tag -a vX.Y.Z -m "release vX.Y.Z"` (message may briefly describe the change set).
+3. Push branch and tag together, e.g. `git push -u origin <branch>` then `git push origin vX.Y.Z`.
+
+Do not push a branch update without pushing its matching version tag in the same release step. If a push is retried without new commits, do not create duplicate tags; only tag when the remote tip commit changes.
+
 ## Versioning (SemVer)
 
-Format: `MAJOR.MINOR.PATCH` (e.g. `v1.2.3`).
+**Tag format:** `vMAJOR.MINOR.PATCH` (leading `v`, e.g. `v1.2.3`). The numeric part follows [Semantic Versioning 2.0.0](https://semver.org/) semantics.
 
-- **MAJOR**: breaking changes (incompatible API/behavior). Bump when users must change code or config.
-- **MINOR**: new features, backward-compatible. Bump for new functionality.
-- **PATCH**: bug fixes, backward-compatible. Bump for fixes only.
+### MAJOR (`X`.y.z)
 
-Examples: new API → minor; remove deprecated API → major; fix crash → patch.
+Increment when the change is **not backward compatible** for consumers of the repo or published artifacts.
+
+- Removing or renaming public APIs, config keys, CLI flags, or documented behavior that users rely on
+- Changing defaults in a way that breaks existing setups
+- Dropping support for a platform or tool version that users still expect
+
+**Examples:** remove a deprecated integration; rename a required settings file; change rule format so old files are invalid.
+
+### MINOR (x.`Y`.z)
+
+Increment when you add **backward-compatible** functionality or meaningful, compatible improvements.
+
+- New features, scripts, MCP integrations, or optional configuration
+- New documentation sections that describe new capability
+- Deprecations **announced** but old behavior still works
+
+**Examples:** add a new optional rule file; new `feat` commits that extend behavior without breaking old usage.
+
+### PATCH (x.y.`Z`)
+
+Increment for **backward-compatible** fixes and small maintenance that do not warrant a minor release.
+
+- Bug fixes, security patches, typo corrections in docs when behavior is unchanged
+- Internal refactors with no user-visible contract change
+- **Routine pushes** on the same branch that only accumulate small compatible changes (default bump when unsure between patch and minor)
+
+**Examples:** `fix` commits; `docs` typo; `chore` that does not add user-facing features.
+
+### Choosing among MAJOR / MINOR / PATCH on a push
+
+- If the push contains **any** breaking change → **MAJOR**
+- Else if the push adds **user-visible or documented** new capability → **MINOR**
+- Else → **PATCH**
+
+Pre-release identifiers (e.g. `v1.2.3-rc.1`) are optional; use only if the team agrees; otherwise stay on `vMAJOR.MINOR.PATCH` only.
 
 ## Naming
 

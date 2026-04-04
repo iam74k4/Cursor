@@ -1,8 +1,17 @@
 {
   "folders": [
-    { "name": "Cursor", "path": "." },
-    { "name": "Sift-iOS", "path": "../Git/Sift-iOS" },
-    { "name": "DiscordBot", "path": "../Git/DiscordBot" }
+    {
+      "name": "Cursor",
+      "path": "."
+    },
+    {
+      "name": "Sift-iOS",
+      "path": "../Sift-iOS"
+    },
+    {
+      "name": "DiscordBot",
+      "path": "../DiscordBot"
+    }
   ],
   "settings": {
     "terminal.integrated.cwd": "${workspaceFolder}/.."

@@ -11,7 +11,7 @@ Cursor では Composer の Agent モードで MCP ツールが利用できる。
 |------|------|
 | グローバル設定 | `~/.cursor/mcp.json` |
 | プロジェクト単位 | `.cursor/mcp.json`（プロジェクトルート） |
-| スクリプト | `Cursor/.cursor/scripts/` |
+| スクリプト | `.cursor/scripts/` |
 
 ## 導入済み MCP サーバー
 
@@ -40,10 +40,31 @@ Issue の作成・管理・検索など。
 
 | 項目 | 内容 |
 |------|------|
-| 接続方式 | ローカル（npx） |
-| 認証 | GitHub PAT（`repo` スコープ） |
+| 接続方式 | リモート（推奨） |
+| 認証 | GitHub PAT（用途に応じたスコープ） |
 
 **主なツール**: `issue_create`, `issue_update`, `issue_list`, `issue_search`, `issue_comment`, `create_pull_request` など
+
+**推奨設定**: `.cursor/mcp.json` に GitHub MCP を設定し、PAT はローカルファイルにのみ保存する。`.cursor/mcp.json` は Git 管理対象に含めない。
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer YOUR_GITHUB_PAT"
+      }
+    }
+  }
+}
+```
+
+1. GitHub で Personal Access Token を作成する
+2. `.cursor/mcp.json` の `YOUR_GITHUB_PAT` を置き換える
+3. Cursor を完全に再起動する
+
+`repo` 系操作を使うなら、必要な repository 権限を含む PAT を使う。
 
 ---
 
@@ -55,6 +76,7 @@ Draw.io（diagrams.net）を AI から操作して図を作成・編集。
 |------|------|
 | 接続方式 | ローカル（ラッパースクリプト経由） |
 | Node.js | v20 以上 |
+| OS | macOS / Linux、または Windows + WSL / Git Bash |
 | エディタ URL | http://localhost:3000/ |
 
 **使い方**
@@ -82,9 +104,11 @@ Draw.io（diagrams.net）を AI から操作して図を作成・編集。
 
 ### drawio-mcp.sh
 
-**パス**: `Cursor/.cursor/scripts/drawio-mcp.sh`
+**パス**: `.cursor/scripts/drawio-mcp.sh`
 
 **役割**: drawio MCP 起動前に既存プロセスを終了し、ポート競合を防ぐ。
+
+`drawio-mcp.sh` は `bash`、`pkill`、`lsof`、`ps` を使うため、Windows では WSL か Git Bash など Unix 系コマンドが使える環境を前提とする。
 
 1. `pkill` で drawio-mcp-server を終了
 2. ポート 3000・3333 の drawio 関連プロセスのみ終了
@@ -111,6 +135,7 @@ Draw.io（diagrams.net）を AI から操作して図を作成・編集。
 1. Cursor を完全に終了して再起動
 2. `Cursor Settings > MCP` でステータス確認
 3. ツールリストのリフレッシュボタンを押す
+4. GitHub MCP の場合は `.cursor/mcp.json` の PAT 設定を見直す
 
 ### draw.io がエラーになる
 

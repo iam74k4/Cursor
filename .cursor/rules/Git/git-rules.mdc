@@ -49,7 +49,7 @@ Examples from this repository (historical):
 - **Always branch**: Create a feature/fix branch from up-to-date `main` before starting work. Do not commit directly to `main` (use a topic branch, then merge).
 - **main**: single long-lived branch. Default on the remote. Merge `feature/`, `feat/`, `fix/`, `bugfix/`, `docs/` branches here after review or local verification.
 - **feature/fix branches**: branch from **`main`**. Example flow: `git checkout main && git pull` → `git checkout -b feat/my-change` → work → merge (or PR) into `main`.
-- **Releases**: Every push that updates a remote branch must include a new semantic version tag on the pushed tip commit (see **Push and version tags** below). Deploy target is defined per project.
+- **Releases**: Every push that updates a remote branch must include a new semantic version tag on the pushed tip commit (see **Push and version tags** below). This repository starts its stable versioning at **`v1.0.0`**.
 
 **New repository**
 
@@ -63,7 +63,7 @@ Examples from this repository (historical):
 
 **Rule:** Whenever you `git push` a branch to the remote, you **must** also create and push a **new** semantic version tag that points at the commit the remote branch will reference after the push (the tip you are publishing).
 
-1. Determine the next `vMAJOR.MINOR.PATCH` using **Versioning (SemVer)** below and the latest existing tag (`git tag -l 'v*' --sort=-v:refname | head -1`). If no tag exists yet, start at **`v0.1.0`** unless the project already documents a different initial version.
+1. Determine the next `vMAJOR.MINOR.PATCH` using **Versioning (SemVer)** below and the latest existing tag (`git tag -l 'v*' --sort=-v:refname | head -1`). If no tag exists yet, start at **`v1.0.0`**.
 2. Create an **annotated** tag: `git tag -a vX.Y.Z -m "release vX.Y.Z"` (message may briefly describe the change set).
 3. Push branch and tag together, e.g. `git push -u origin <branch>` then `git push origin vX.Y.Z`.
 
@@ -110,6 +110,86 @@ Increment for **backward-compatible** fixes and small maintenance that do not wa
 - Else → **PATCH**
 
 Pre-release identifiers (e.g. `v1.2.3-rc.1`) are optional; use only if the team agrees; otherwise stay on `vMAJOR.MINOR.PATCH` only.
+
+## Version decision policy
+
+Use these practical rules when deciding the next version for this repository.
+
+### Default decision order
+
+1. Check whether the change breaks existing usage, naming, or documented expectations.
+2. If not breaking, check whether it adds a new usable capability, new rule, new script, or new documented workflow.
+3. If neither applies, treat it as maintenance and bump `PATCH`.
+4. When unsure between `MINOR` and `PATCH`, choose `PATCH`.
+
+### Use `MAJOR` when
+
+- Existing rule formats, required file locations, or documented workflows become incompatible
+- Users must rename, move, delete, or rewrite existing configuration to keep working
+- A default behavior changes in a way that breaks current usage
+
+### Use `MINOR` when
+
+- A new rule, script, MCP integration, or optional workflow is added without breaking existing usage
+- Documentation introduces a genuinely new supported way of working
+- Existing behavior stays valid, but users gain new capabilities
+
+### Use `PATCH` when
+
+- Wording, examples, or documentation are clarified without changing expected behavior
+- Internal cleanup, refactoring, formatting, or reorganization does not change the user-facing contract
+- Small fixes correct mistakes while preserving the same overall workflow
+- The change is useful but incremental, and users do not need to change how they already work
+
+### Quick examples for this repository
+
+- `MAJOR`: change the release process so old tag or branch rules no longer apply
+- `MINOR`: add a new MCP rule, script, or documented workflow that users can start using optionally
+- `PATCH`: fix docs, clarify naming, adjust examples, or tidy rules without changing the workflow
+
+## Standard operating flow
+
+Use this default flow for this repository so `branch / commit / tag / push` stays predictable.
+
+1. Sync `main`.
+   - `git checkout main`
+   - `git pull`
+2. Create a topic branch from `main`.
+   - Feature: `git checkout -b feat/<topic>`
+   - Fix: `git checkout -b fix/<topic>`
+   - Docs: `git checkout -b docs/<topic>`
+3. Make one logical change and commit with Conventional Commits.
+   - Example: `feat(git): add release tag workflow`
+   - Example: `docs(git): clarify versioning policy`
+4. Before pushing, choose the next version from the latest `v*` tag.
+   - First published version in this repo: `v1.0.0`
+   - Breaking change: bump `MAJOR`
+   - Backward-compatible feature: bump `MINOR`
+   - Fix or maintenance: bump `PATCH`
+5. Tag the exact commit you are publishing.
+   - `git tag -a vX.Y.Z -m "release vX.Y.Z"`
+6. Push the branch, then push the tag.
+   - New branch: `git push -u origin <branch>`
+   - Existing branch: `git push origin <branch>`
+   - Tag: `git push origin vX.Y.Z`
+7. Merge into `main` after review or local verification.
+   - Keep `main` releasable.
+   - Do not commit directly on `main`.
+
+### Practical examples
+
+- New feature branch first release:
+  - branch: `feat/version-policy`
+  - commit: `feat(git): add semver release workflow`
+  - tag: `v1.1.0`
+- Small docs fix:
+  - branch: `docs/git-versioning`
+  - commit: `docs(git): clarify first stable tag`
+  - tag: `v1.1.1`
+- Breaking rule change:
+  - branch: `feat/rule-format-update`
+  - commit: `feat(git): change release rule format`
+  - tag: `v2.0.0`
 
 ## Naming
 

@@ -6,12 +6,15 @@ Cursor IDE の共有ルール・ドキュメント・ワークスペース設定
 
 ## 概要
 
-複数プロジェクトで一貫した AI エージェントの振る舞いを保つため、Cursor ルールと MCP ドキュメントを一元管理する。
+複数プロジェクトで一貫した AI エージェントの振る舞いを保つため、Cursor のルール、MCP ドキュメント、補助スクリプトを一元管理する。
 
 ## 構成
 
 ```text
 .cursor/
+├── README.md                  # .cursor 配下の索引
+├── agents/
+│   └── README.md              # Agent 定義の配置方針
 ├── Document/
 │   └── MCP.md                 # MCP サーバーの利用ガイド
 ├── rules/
@@ -23,8 +26,8 @@ Cursor IDE の共有ルール・ドキュメント・ワークスペース設定
 │       ├── context7-rules.mdc  # Context7 統合ルール
 │       └── drawio-rules.mdc   # drawio MCP で図を作成・編集
 └── scripts/
-    ├── drawio-mcp.sh          # drawio MCP 起動ラッパー（ポート競合対策）
-    └── README.md              # スクリプト一覧
+    ├── README.md              # スクリプト一覧
+    └── drawio-mcp.sh          # drawio MCP 起動ラッパー（ポート競合対策）
 ```
 
 ## ワークスペース
@@ -43,7 +46,7 @@ Cursor IDE の共有ルール・ドキュメント・ワークスペース設定
 2. 必要な関連リポジトリを `Cursor` と同じ親ディレクトリ配下に配置する。
 3. Cursor で `Cursor.code-workspace` を開く。
 
-兄弟ディレクトリ構成の例:
+推奨ディレクトリ構成:
 
 ```text
 Git/
@@ -52,11 +55,13 @@ Git/
 └── DiscordBot
 ```
 
-## Usage
+## ドキュメント案内
 
-- ルール確認: `.cursor/rules/` を参照
-- MCP 設定確認: `.cursor/Document/MCP.md` を参照
-- 共有ワークスペース起動: `Cursor.code-workspace` を開く
+- 全体索引: `.cursor/README.md`
+- MCP 設定: `.cursor/Document/MCP.md`
+- ルール索引: `.cursor/rules/README.md`
+- スクリプト一覧: `.cursor/scripts/README.md`
+- Agent 定義方針: `.cursor/agents/README.md`
 
 ## ルール一覧
 
@@ -67,16 +72,7 @@ Git/
 | `context7-rules.mdc` | 常時適用 | ライブラリドキュメント取得時に Context7 MCP を使用 |
 | `drawio-rules.mdc` | 要時参照 | drawio MCP で図・ダイアグラムを作成・編集する際のガイド |
 
-## Git / Release Policy
-
-このリポジトリは `main` を唯一の長期運用ブランチとし、作業は `feat/*`、`fix/*`、`docs/*` などのトピックブランチで行う。
-
-リモートへ push するコミットには、必ず `vMAJOR.MINOR.PATCH` 形式の注釈付きタグを対応付ける。最初の公開タグは `v1.0.0` とし、以後は SemVer に従って更新する。
-
-- `MAJOR`: 後方互換を壊す変更
-- `MINOR`: 後方互換を保った機能追加
-- `PATCH`: 修正、保守、軽微な文書更新
-- 迷ったときは `PATCH` を優先する
+Git 運用の詳細は `.cursor/rules/README.md` から辿れる。
 
 ## License
 

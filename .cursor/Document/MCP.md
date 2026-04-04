@@ -5,6 +5,41 @@
 MCP は、AI に外部ツールやデータソースへのアクセスを提供するオープンプロトコル。
 Cursor では Composer の Agent モードで MCP ツールが利用できる。
 
+## クイックスタート
+
+1. `.cursor/mcp.json` または `~/.cursor/mcp.json` に必要なサーバーを設定する
+2. Cursor を完全に再起動して MCP を読み込む
+3. `Cursor Settings > MCP` で状態を確認する
+4. サーバーごとの利用条件はこのドキュメント内の各セクションを参照する
+
+## おすすめ構成
+
+最初に入れるなら、以下の 3 つを優先すると使い勝手がよい。
+
+1. **GitHub MCP**
+   Issue、PR、コメント確認、レビュー補助で日常運用の効果が大きい。
+2. **Context7**
+   ライブラリやフレームワークの最新ドキュメント参照に向く。
+3. **Browser / Web 操作系**
+   画面確認、フォーム入力、簡単な動作検証に向く。
+
+### 最小実用セット
+
+- コード管理: GitHub MCP
+- 最新ドキュメント参照: Context7
+- UI 確認や簡易 E2E: Browser / Web 操作系
+
+Browser / Web 操作系はプラグイン経由で有効化することが多く、`mcp.json` を使わない場合がある。
+
+## 関連ファイル
+
+| パス | 用途 |
+|------|------|
+| `.cursor/README.md` | `.cursor/` 配下の全体索引 |
+| `.cursor/scripts/README.md` | 補助スクリプトの一覧 |
+| `.cursor/rules/MCP/context7-rules.mdc` | Context7 の利用ルール |
+| `.cursor/rules/MCP/drawio-rules.mdc` | draw.io MCP の利用ルール |
+
 ## 設定
 
 | 項目 | パス |
@@ -13,7 +48,7 @@ Cursor では Composer の Agent モードで MCP ツールが利用できる。
 | プロジェクト単位 | `.cursor/mcp.json`（プロジェクトルート） |
 | スクリプト | `.cursor/scripts/` |
 
-## 導入済み MCP サーバー
+## 利用中の MCP サーバー
 
 ### 1. Context7
 
@@ -26,6 +61,8 @@ Cursor では Composer の Agent モードで MCP ツールが利用できる。
 | 無料枠 | 月 1,000 API コール |
 
 **使い方**: プロンプトに `use context7` を追加。
+
+**向いている用途**: ライブラリ API、セットアップ手順、コード例の参照。
 
 ```
 React Query でクエリを無効化するには？ use context7
@@ -44,6 +81,8 @@ Issue の作成・管理・検索など。
 | 認証 | GitHub PAT（用途に応じたスコープ） |
 
 **主なツール**: `issue_create`, `issue_update`, `issue_list`, `issue_search`, `issue_comment`, `create_pull_request` など
+
+**向いている用途**: Issue 管理、PR 確認、コメント確認、レビュー補助。
 
 **推奨設定**: `.cursor/mcp.json` に GitHub MCP を設定し、PAT はローカルファイルにのみ保存する。`.cursor/mcp.json` は Git 管理対象に含めない。
 
@@ -98,6 +137,8 @@ Draw.io（diagrams.net）を AI から操作して図を作成・編集。
 | Figma | デザインファイル読み取り、Code Connect |
 | cursor-ide-browser | ページ遷移、クリック、フォーム入力、スクリーンショット |
 
+`cursor-ide-browser` は、画面確認や簡易的なブラウザ操作を Cursor から行いたいときに有用。
+
 ---
 
 ## スクリプト
@@ -116,6 +157,8 @@ Draw.io（diagrams.net）を AI から操作して図を作成・編集。
 4. drawio-mcp-server を起動
 
 **mcp.json 参照**: `~/.cursor/mcp.json` の drawio の `command` で指定。
+
+スクリプト一覧は `.cursor/scripts/README.md` を参照。
 
 ---
 

@@ -14,6 +14,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/).
 - **scope**: optional. e.g. `auth`, `api`, `ui`, `git`, `mcp`, `cursor`
 - **subject**: lowercase, imperative mood, no trailing period
 - **Language**: subject and body (if any) are **English only** — no non-English text in the commit message; keeps hooks, changelogs, and parsers consistent.
+- **Alpha / beta**: Do not encode release maturity in the commit subject. Use normal Conventional Commits for every commit; express **alpha**, **beta**, or **rc** only on **version tags** (see **Pre-release tags: alpha and beta** under Versioning).
 
 Examples:
 
@@ -109,7 +110,30 @@ Increment for **backward-compatible** fixes and small maintenance that do not wa
 - Else if the push adds **user-visible or documented** new capability → **MINOR**
 - Else → **PATCH**
 
-Pre-release identifiers (e.g. `v1.2.3-rc.1`) are optional; use only if the team agrees; otherwise stay on `vMAJOR.MINOR.PATCH` only.
+### Pre-release tags: alpha and beta (optional)
+
+Use **SemVer pre-release** tags when the published tip is not yet treated as stable for general production use. **Format:** `vMAJOR.MINOR.PATCH-<prerelease>` with dot-separated identifiers after the hyphen, per [SemVer 2.0.0](https://semver.org/) (e.g. `v1.2.0-alpha.1`, `v1.2.0-beta.2`, `v1.2.0-rc.1`). The `v` prefix and numeric `MAJOR.MINOR.PATCH` follow the same bump rules as stable releases; increment or replace the pre-release suffix until you publish a final tag **without** a pre-release part (e.g. `v1.2.0`).
+
+**alpha**
+
+- Early integration: behavior, public conventions (rules, scripts, documented workflows), and APIs may still change.
+- For maintainers and early adopters; **not** advertised as production-ready.
+
+**beta**
+
+- Stabilization: intended feature set and contracts are largely settled; remaining work is mainly defects, polish, and compatibility.
+- Documented expectations should stay stable except for necessary fixes; suitable for broader testing before a final release.
+
+**Typical progression**
+
+`alpha.N` → `beta.N` → optional `rc.N` → final `vX.Y.Z` with no pre-release suffix. Use **release candidate (`rc`)** when the build is meant to be release-identical except for last verification.
+
+**Commits and tags**
+
+- **Commits** stay in the usual Conventional Commits form (English subject, imperative); alpha/beta describe **release tags**, not a separate commit message format.
+- When you push a pre-release, still use an **annotated** tag and the same push/tag discipline as stable releases; only the tag string includes the pre-release identifier.
+
+If the team does not need pre-releases, keep publishing **`vMAJOR.MINOR.PATCH` only** and skip alpha/beta tags.
 
 ## Version decision policy
 

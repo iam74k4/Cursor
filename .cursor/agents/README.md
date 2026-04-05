@@ -1,23 +1,23 @@
 # Agents
 
-`.cursor/agents/` は、このワークスペース専用の Agent 定義や補助設定を置く場所。
+`.cursor/agents/` is the place for workspace-specific agent definitions and supporting files.
 
-## 用途
+## Purpose
 
-- プロジェクト固有の Agent 定義を追加するときに使う
-- ルールファイルだけでは表現しにくい実行単位の役割分担をまとめる
-- 追加した Agent から参照する資料や補助ファイルの置き場を明確にする
+- Add project-specific agent definitions here.
+- Use this directory for execution roles that are too specific to express only with rule files.
+- Keep referenced documents and supporting files close to the agents that use them.
 
-## 運用方針
+## Guidelines
 
-- 役割ごとにファイルやサブディレクトリを分ける
-- 名前だけでは役割が分からない Agent は作らない
-- 永続的な行動規約は `../rules/README.md` から辿れる `rules/` 配下に置き、Agent 側には実行目的を置く
-- MCP やスクリプトに依存する Agent は、対応する `../Document/MCP.md` または `../scripts/README.md` への参照を添える
+- Split files or subdirectories by role.
+- Avoid creating agents whose purpose is unclear from the name alone.
+- Keep persistent behavior rules under `rules/` via `../rules/README.md`; keep execution-focused intent in agent files.
+- If an agent depends on MCP or scripts, include references to `../Document/MCP.md` or `../scripts/README.md`.
 
-## 関連
+## Related
 
-- 全体索引: `../README.md`
-- MCP 設定: `../Document/MCP.md`
-- 共有ルール: `../rules/README.md`
-- 補助スクリプト: `../scripts/README.md`
+- Main index: `../README.md`
+- MCP guide: `../Document/MCP.md`
+- Shared rules: `../rules/README.md`
+- Helper scripts: `../scripts/README.md`

@@ -1,40 +1,40 @@
 # .cursor Index
 
-`.cursor/` 配下のルール、ドキュメント、補助スクリプトの入口。
+Entry point for rules, documents, and helper scripts under `.cursor/`.
 
 ## Agents
 
-| パス | 用途 |
-|------|------|
-| `agents/README.md` | Agent 定義を置く場所と運用方針 |
+| Path | Purpose |
+|------|---------|
+| `agents/README.md` | Where to place agent definitions and how to organize them |
 
 ## Documents
 
-| パス | 用途 |
-|------|------|
-| `Document/MCP.md` | MCP サーバーの設定方法、利用中サーバー、トラブルシューティング |
+| Path | Purpose |
+|------|---------|
+| `Document/MCP.md` | MCP setup, active servers, and troubleshooting |
 
 ## Rules
 
-| パス | 用途 |
-|------|------|
-| `rules/README.md` | 共有ルールの索引 |
-| `rules/Git/git-rules.mdc` | Git ワークフロー、Conventional Commits、タグ運用 |
-| `rules/Document/readme-rules.mdc` | README の構造と記述ルール |
-| `rules/MCP/context7-rules.mdc` | Context7 を使う場面のルール |
-| `rules/MCP/drawio-rules.mdc` | draw.io MCP 利用時の補助ルール |
+| Path | Purpose |
+|------|---------|
+| `rules/README.md` | Index of shared rules |
+| `rules/Git/git-rules.mdc` | Git workflow, Conventional Commits, and tag policy |
+| `rules/Document/readme-rules.mdc` | README structure and writing rules |
+| `rules/MCP/context7-rules.mdc` | Rules for when to use Context7 |
+| `rules/MCP/drawio-rules.mdc` | Helper rules for draw.io MCP usage |
 
 ## Scripts
 
-| パス | 用途 |
-|------|------|
-| `scripts/README.md` | スクリプト一覧と前提環境 |
-| `scripts/drawio-mcp.sh` | drawio MCP 起動前のクリーンアップ付きラッパー |
+| Path | Purpose |
+|------|---------|
+| `scripts/README.md` | Script index and prerequisites |
+| `scripts/drawio-mcp.sh` | Wrapper with cleanup before starting draw.io MCP |
 
 ## Quick Start
 
-1. ワークスペース全体の入口はリポジトリ直下の `README.md` を確認する。
-2. Agent 定義を追加するときは `agents/README.md` を確認する。
-3. MCP を使うときは `Document/MCP.md` を確認する。
-4. 共有ルールを確認するときは `rules/README.md` から辿る。
-5. 補助スクリプトを使うときは `scripts/README.md` を確認する。
+1. Start with the repository root `README.md` for the workspace overview.
+2. Check `agents/README.md` before adding agent definitions.
+3. Read `Document/MCP.md` before configuring or using MCP servers.
+4. Use `rules/README.md` as the entry point for shared rules.
+5. Read `scripts/README.md` before using helper scripts.

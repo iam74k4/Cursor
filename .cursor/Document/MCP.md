@@ -1,71 +1,70 @@
-# MCP（Model Context Protocol）利用方法
+# MCP Usage Guide
 
-## 概要
+## Overview
 
-MCP は、AI に外部ツールやデータソースへのアクセスを提供するオープンプロトコル。
-Cursor では Composer の Agent モードで MCP ツールが利用できる。
+MCP (Model Context Protocol) is an open protocol that gives AI access to external tools and data sources. In Cursor, MCP tools are available when running in Agent mode.
 
-## クイックスタート
+## Quick Start
 
-1. `.cursor/mcp.json` または `~/.cursor/mcp.json` に必要なサーバーを設定する
-2. Cursor を完全に再起動して MCP を読み込む
-3. `Cursor Settings > MCP` で状態を確認する
-4. サーバーごとの利用条件はこのドキュメント内の各セクションを参照する
+1. Configure the servers you need in `.cursor/mcp.json` or `~/.cursor/mcp.json`.
+2. Fully restart Cursor so it reloads MCP.
+3. Check server status in `Cursor Settings > MCP`.
+4. Refer to the sections below for server-specific usage requirements.
 
-## おすすめ構成
+## Recommended Setup
 
-最初に入れるなら、以下の 3 つを優先すると使い勝手がよい。
+If you are starting from scratch, these three options usually provide the best value first.
 
-1. **GitHub MCP**
-   Issue、PR、コメント確認、レビュー補助で日常運用の効果が大きい。
-2. **Context7**
-   ライブラリやフレームワークの最新ドキュメント参照に向く。
-3. **Browser / Web 操作系**
-   画面確認、フォーム入力、簡単な動作検証に向く。
+1. **GitHub MCP**  
+   Useful for issues, pull requests, comments, and review support in daily development.
+2. **Context7**  
+   Best for up-to-date library and framework documentation.
+3. **Browser / Web tools**  
+   Useful for page checks, form input, and lightweight UI verification.
 
-### 最小実用セット
+### Minimal Practical Set
 
-- コード管理: GitHub MCP
-- 最新ドキュメント参照: Context7
-- UI 確認や簡易 E2E: Browser / Web 操作系
+- Code management: GitHub MCP
+- Current documentation lookup: Context7
+- UI checks and lightweight E2E flows: Browser / Web tools
 
-Browser / Web 操作系はプラグイン経由で有効化することが多く、`mcp.json` を使わない場合がある。
+Browser / Web tools are often enabled through plugins, so they may not require `mcp.json`.
 
-## 関連ファイル
+## Related Files
 
-| パス | 用途 |
+| Path | Purpose |
+|------|---------|
+| `.cursor/README.md` | Main index for the `.cursor/` directory |
+| `.cursor/scripts/README.md` | Helper script index |
+| `.cursor/rules/MCP/context7-rules.mdc` | Rules for using Context7 |
+| `.cursor/rules/MCP/drawio-rules.mdc` | Rules for using draw.io MCP |
+
+## Configuration Paths
+
+| Item | Path |
 |------|------|
-| `.cursor/README.md` | `.cursor/` 配下の全体索引 |
-| `.cursor/scripts/README.md` | 補助スクリプトの一覧 |
-| `.cursor/rules/MCP/context7-rules.mdc` | Context7 の利用ルール |
-| `.cursor/rules/MCP/drawio-rules.mdc` | draw.io MCP の利用ルール |
+| Global config | `~/.cursor/mcp.json` |
+| Project config | `.cursor/mcp.json` |
+| Scripts | `.cursor/scripts/` |
 
-## 設定
-
-| 項目 | パス |
-|------|------|
-| グローバル設定 | `~/.cursor/mcp.json` |
-| プロジェクト単位 | `.cursor/mcp.json`（プロジェクトルート） |
-| スクリプト | `.cursor/scripts/` |
-
-## 利用中の MCP サーバー
+## Active MCP Servers
 
 ### 1. Context7
 
-最新のライブラリドキュメント・コード例を AI に提供。
+Provides current library documentation and code examples to the AI.
 
-| 項目 | 内容 |
-|------|------|
-| 接続方式 | リモート（URL） |
-| Node.js | 不要 |
-| 無料枠 | 月 1,000 API コール |
+| Item | Value |
+|------|-------|
+| Connection | Remote (URL) |
+| Node.js | Not required |
+| Free tier | 1,000 API calls per month |
 
-**使い方**: プロンプトに `use context7` を追加。
+**Usage**: Add `use context7` to your prompt.
 
-**向いている用途**: ライブラリ API、セットアップ手順、コード例の参照。
+**Best for**: library APIs, setup instructions, and implementation examples.
 
-```
-React Query でクエリを無効化するには？ use context7
+```text
+How do I invalidate queries in React Query? use context7
 use context7 with /vercel/next.js for app router setup
 ```
 
@@ -73,18 +72,18 @@ use context7 with /vercel/next.js for app router setup
 
 ### 2. GitHub
 
-Issue の作成・管理・検索など。
+Used for creating, managing, and searching issues and pull requests.
 
-| 項目 | 内容 |
-|------|------|
-| 接続方式 | リモート（推奨） |
-| 認証 | GitHub PAT（用途に応じたスコープ） |
+| Item | Value |
+|------|-------|
+| Connection | Remote (recommended) |
+| Authentication | GitHub PAT with the required scopes |
 
-**主なツール**: `issue_create`, `issue_update`, `issue_list`, `issue_search`, `issue_comment`, `create_pull_request` など
+**Common tools**: `issue_create`, `issue_update`, `issue_list`, `issue_search`, `issue_comment`, `create_pull_request`
 
-**向いている用途**: Issue 管理、PR 確認、コメント確認、レビュー補助。
+**Best for**: issue management, PR review, comment review, and development support.
 
-**推奨設定**: `.cursor/mcp.json` に GitHub MCP を設定し、PAT はローカルファイルにのみ保存する。`.cursor/mcp.json` は Git 管理対象に含めない。
+**Recommended setup**: configure GitHub MCP in `.cursor/mcp.json`, store the PAT only in a local file, and keep `.cursor/mcp.json` out of version control.
 
 ```json
 {
@@ -99,110 +98,110 @@ Issue の作成・管理・検索など。
 }
 ```
 
-1. GitHub で Personal Access Token を作成する
-2. `.cursor/mcp.json` の `YOUR_GITHUB_PAT` を置き換える
-3. Cursor を完全に再起動する
+1. Create a Personal Access Token in GitHub.
+2. Replace `YOUR_GITHUB_PAT` in `.cursor/mcp.json`.
+3. Fully restart Cursor.
 
-`repo` 系操作を使うなら、必要な repository 権限を含む PAT を使う。
+If you plan to use `repo`-level operations, make sure the PAT includes the necessary repository permissions.
 
 ---
 
 ### 3. draw.io
 
-Draw.io（diagrams.net）を AI から操作して図を作成・編集。
+Lets the AI create and edit diagrams in draw.io (diagrams.net).
 
-| 項目 | 内容 |
-|------|------|
-| 接続方式 | ローカル（ラッパースクリプト経由） |
-| Node.js | v20 以上 |
-| OS | macOS / Linux、または Windows + WSL / Git Bash |
-| エディタ URL | http://localhost:3000/ |
+| Item | Value |
+|------|-------|
+| Connection | Local, via wrapper script |
+| Node.js | v20 or later |
+| OS | macOS / Linux, or Windows with WSL / Git Bash |
+| Editor URL | http://localhost:3000/ |
 
-**使い方**
+**Usage**
 
-1. Cursor を再起動して MCP を読み込む
-2. ブラウザで http://localhost:3000/ を開く
-3. プロンプトで図の作成・編集を依頼する
+1. Restart Cursor so MCP loads the server.
+2. Open http://localhost:3000/ in your browser.
+3. Ask the agent to create or edit diagrams.
 
-**ルール**: `.cursor/rules/MCP/drawio-rules.mdc` を参照
-
----
-
-## プラグイン経由の MCP
-
-`mcp.json` での設定不要。プラグインインストールで有効化。
-
-| サーバー | 用途 |
-|----------|------|
-| Figma | デザインファイル読み取り、Code Connect |
-| cursor-ide-browser | ページ遷移、クリック、フォーム入力、スクリーンショット |
-
-`cursor-ide-browser` は、画面確認や簡易的なブラウザ操作を Cursor から行いたいときに有用。
+**Rule file**: `.cursor/rules/MCP/drawio-rules.mdc`
 
 ---
 
-## スクリプト
+## Plugin-Based MCP
+
+These do not require `mcp.json` and are enabled through plugin installation.
+
+| Server | Purpose |
+|--------|---------|
+| Figma | Read design files and support Code Connect |
+| cursor-ide-browser | Navigation, clicks, form input, and screenshots |
+
+`cursor-ide-browser` is useful when you want Cursor to inspect pages or perform lightweight browser interactions.
+
+---
+
+## Scripts
 
 ### drawio-mcp.sh
 
-**パス**: `.cursor/scripts/drawio-mcp.sh`
+**Path**: `.cursor/scripts/drawio-mcp.sh`
 
-**役割**: drawio MCP 起動前に既存プロセスを終了し、ポート競合を防ぐ。
+**Purpose**: Stops existing draw.io MCP processes before startup to avoid port conflicts.
 
-`drawio-mcp.sh` は `bash`、`pkill`、`lsof`、`ps` を使うため、Windows では WSL か Git Bash など Unix 系コマンドが使える環境を前提とする。
+`drawio-mcp.sh` uses `bash`, `pkill`, `lsof`, and `ps`, so on Windows it assumes an environment such as WSL or Git Bash with Unix-style commands available.
 
-1. `pkill` で drawio-mcp-server を終了
-2. ポート 3000・3333 の drawio 関連プロセスのみ終了
-3. 2 秒待機
-4. drawio-mcp-server を起動
+It performs the following steps:
 
-**mcp.json 参照**: `~/.cursor/mcp.json` の drawio の `command` で指定。
+1. Stops `drawio-mcp-server` with `pkill`
+2. Terminates draw.io-related processes on ports 3000 and 3333 only
+3. Waits for 2 seconds
+4. Starts `drawio-mcp-server`
 
-スクリプト一覧は `.cursor/scripts/README.md` を参照。
+**Referenced from `mcp.json`**: use this script in the draw.io `command` field in `~/.cursor/mcp.json`.
 
----
-
-## 環境
-
-| 項目 | 内容 |
-|------|------|
-| Node.js | v20 以上（LTS 推奨） |
-| 管理 | nvm 推奨 |
+See `.cursor/scripts/README.md` for the script index.
 
 ---
 
-## トラブルシューティング
+## Environment
 
-### MCP サーバーが起動しない
+| Item | Value |
+|------|-------|
+| Node.js | v20 or later (LTS recommended) |
+| Version management | `nvm` recommended |
 
-1. Cursor を完全に終了して再起動
-2. `Cursor Settings > MCP` でステータス確認
-3. ツールリストのリフレッシュボタンを押す
-4. GitHub MCP の場合は `.cursor/mcp.json` の PAT 設定を見直す
+---
 
-### draw.io がエラーになる
+## Troubleshooting
 
-1. **手動起動でエラー確認**
+### MCP server does not start
+
+1. Fully quit and restart Cursor.
+2. Check status in `Cursor Settings > MCP`.
+3. Refresh the tool list.
+4. If the issue is with GitHub MCP, review the PAT configuration in `.cursor/mcp.json`.
+
+### draw.io returns errors
+
+1. **Check the error manually**
    ```bash
    npx -y drawio-mcp-server --editor --http-port 3000
    ```
+2. **When using `nvm`**: add `env.PATH` to the draw.io entry in `mcp.json` so it points to the correct Node path.
+3. **Fallback**: use Mermaid diagrams in Markdown if draw.io is not available.
 
-2. **nvm 利用時**: `mcp.json` の drawio に `env.PATH` を追加（nvm の node パスを指定）
-
-3. **代替**: Mermaid 図で代用可能
-
-### npx が見つからない
+### `npx` is not found
 
 ```bash
 node -v
 npx -v
 ```
 
-nvm 利用時は新しいターミナルで実行する。
+If you use `nvm`, run these commands in a fresh terminal session.
 
 ---
 
-## 参考リンク
+## References
 
 - [Context7](https://context7.com/docs/overview)
 - [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)

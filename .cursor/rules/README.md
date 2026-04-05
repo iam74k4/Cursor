@@ -1,32 +1,32 @@
 # Rules
 
-`.cursor/rules/` 配下の共有ルール一覧。
+Index of shared rules under `.cursor/rules/`.
 
-## ディレクトリ構成
+## Directory Structure
 
-| パス | 用途 |
-|------|------|
-| `Git/` | Git ワークフロー、コミット、ブランチ、タグ運用 |
-| `Document/` | README などドキュメント編集時のルール |
-| `MCP/` | MCP 利用時の補助ルール |
+| Path | Purpose |
+|------|---------|
+| `Git/` | Git workflow, commits, branches, and tag policy |
+| `Document/` | Rules for editing documentation such as README files |
+| `MCP/` | Helper rules for MCP usage |
 
-## 主なルール
+## Main Rules
 
-| パス | 用途 |
-|------|------|
-| `Git/git-rules.mdc` | Conventional Commits、main only 運用、SemVer タグ運用 |
-| `Document/readme-rules.mdc` | README の構造、バッジ、見出し順 |
-| `MCP/context7-rules.mdc` | 最新ライブラリドキュメント取得時の Context7 利用 |
-| `MCP/drawio-rules.mdc` | draw.io MCP で図を作成・編集するときの補助 |
+| Path | Purpose |
+|------|---------|
+| `Git/git-rules.mdc` | Conventional Commits, main-only workflow, and SemVer tag policy |
+| `Document/readme-rules.mdc` | README structure, badges, and heading order |
+| `MCP/context7-rules.mdc` | Use Context7 when retrieving current library documentation |
+| `MCP/drawio-rules.mdc` | Guidance for creating and editing diagrams with draw.io MCP |
 
-## 使い分け
+## How to Use
 
-- 常時参照する全体ルールは `Git/` を確認する
-- README などの文章整備では `Document/` を確認する
-- MCP を使う作業では `MCP/` を確認する
+- Check `Git/` for always-on workflow rules.
+- Check `Document/` when editing README or other documentation files.
+- Check `MCP/` when using MCP-related workflows.
 
-## 関連
+## Related
 
-- 全体索引: `../README.md`
-- MCP 設定: `../Document/MCP.md`
-- 補助スクリプト: `../scripts/README.md`
+- Main index: `../README.md`
+- MCP guide: `../Document/MCP.md`
+- Helper scripts: `../scripts/README.md`

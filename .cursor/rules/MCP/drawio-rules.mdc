@@ -1,33 +1,33 @@
 ---
-description: drawio MCP で図・ダイアグラムを作成・編集するルール
+description: Rules for creating and editing diagrams with draw.io MCP
 alwaysApply: false
 ---
 
 # drawio MCP Integration
 
-以下の場面では drawio MCP（user-drawio）を使って図を作成・編集する。
+Use draw.io MCP (`user-drawio`) in the following situations.
 
-- アーキテクチャ図、フロー図、ER 図、シーケンス図などの作成
-- 既存の drawio 図の編集・修正
-- レイヤー分けや注釈の追加
+- Creating architecture diagrams, flow charts, ER diagrams, or sequence diagrams
+- Editing or updating existing draw.io diagrams
+- Adding layers, grouping, or annotations
 
-## 使い方
+## Usage
 
-1. **ビルトインエディタ**: MCP 起動後、ブラウザで http://localhost:3000/ を開く
-2. **ツール呼び出し**: `call_mcp_tool` で user-drawio のツールを呼ぶ
-3. **ツールスキーマ**: 呼び出し前に MCP のツールディスクリプタ（user-drawio/tools/*.json）でパラメータを確認する
+1. **Built-in editor**: after MCP starts, open http://localhost:3000/ in your browser
+2. **Tool calls**: invoke `user-drawio` tools through `call_mcp_tool`
+3. **Tool schema**: check MCP tool descriptors (`user-drawio/tools/*.json`) before calling a tool
 
-## 主なツール
+## Common Tools
 
-| 用途 | ツール例 |
-|------|----------|
-| 図の確認 | `get-selected-cell`, `list-paged-model`, `get-shape-categories` |
-| 図の編集 | `add-rectangle`, `add-edge`, `add-cell-of-shape`, `edit-cell` |
-| 削除 | `delete-cell-by-id` |
-| レイヤー | `list-layers`, `create-layer`, `set-active-layer` |
+| Purpose | Example tools |
+|---------|---------------|
+| Inspect diagrams | `get-selected-cell`, `list-paged-model`, `get-shape-categories` |
+| Edit diagrams | `add-rectangle`, `add-edge`, `add-cell-of-shape`, `edit-cell` |
+| Delete nodes | `delete-cell-by-id` |
+| Manage layers | `list-layers`, `create-layer`, `set-active-layer` |
 
-## drawio が使えない場合
+## If draw.io Is Unavailable
 
-- **代替**: Mermaid 図を Markdown に直接記述。GitHub がネイティブでレンダリングするため、画像エクスポート不要。
-- **確認**: Cursor Settings > MCP で drawio のステータスを確認。エラー時は `npx -y drawio-mcp-server --editor --http-port 3000` を手動実行してエラー内容を確認。
-- **スクリプト**: `mcp.json` は `.cursor/scripts/drawio-mcp.sh` を経由。既存プロセス終了→ポート解放→起動の順でポート競合を防ぐ。
+- **Fallback**: write Mermaid diagrams directly in Markdown. GitHub renders them natively, so no image export is required.
+- **Check status**: open `Cursor Settings > MCP` and verify the draw.io server status. If it fails, run `npx -y drawio-mcp-server --editor --http-port 3000` manually to inspect the error.
+- **Wrapper script**: use `.cursor/scripts/drawio-mcp.sh` from `mcp.json`. It prevents port conflicts by stopping old processes, freeing ports, and then starting the server.

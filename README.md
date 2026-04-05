@@ -2,51 +2,51 @@
 
 ![License](https://img.shields.io/github/license/iam74k4/Cursor)
 
-Cursor IDE の共有ルール・ドキュメント・ワークスペース設定を管理するリポジトリ。
+This repository manages shared Cursor IDE rules, documentation, and workspace settings.
 
-## 概要
+## Overview
 
-複数プロジェクトで一貫した AI エージェントの振る舞いを保つため、Cursor のルール、MCP ドキュメント、補助スクリプトを一元管理する。
+It centralizes Cursor rules, MCP documentation, and helper scripts so multiple projects can follow a consistent AI agent workflow.
 
-## 構成
+## Structure
 
 ```text
 .cursor/
-├── README.md                  # .cursor 配下の索引
+├── README.md                  # Index for the .cursor directory
 ├── agents/
-│   └── README.md              # Agent 定義の配置方針
+│   └── README.md              # Agent definition placement and conventions
 ├── Document/
-│   └── MCP.md                 # MCP サーバーの利用ガイド
+│   └── MCP.md                 # MCP server usage guide
 ├── rules/
 │   ├── Git/
-│   │   └── git-rules.mdc      # Git ワークフロー・コミット規約
+│   │   └── git-rules.mdc      # Git workflow and commit conventions
 │   ├── Document/
-│   │   └── readme-rules.mdc   # README 構造・スタイル
+│   │   └── readme-rules.mdc   # README structure and style
 │   └── MCP/
-│       ├── context7-rules.mdc  # Context7 統合ルール
-│       └── drawio-rules.mdc   # drawio MCP で図を作成・編集
+│       ├── context7-rules.mdc # Context7 integration rules
+│       └── drawio-rules.mdc   # draw.io MCP diagram guidance
 └── scripts/
-    ├── README.md              # スクリプト一覧
-    └── drawio-mcp.sh          # drawio MCP 起動ラッパー（ポート競合対策）
+    ├── README.md              # Script index
+    └── drawio-mcp.sh          # draw.io MCP startup wrapper
 ```
 
-## ワークスペース
+## Workspace
 
-`Cursor.code-workspace` でマルチルートワークスペースとして以下のプロジェクトを束ねている。
+`Cursor.code-workspace` groups the following projects into a multi-root workspace.
 
-| フォルダ | パス | 説明 |
-|----------|------|------|
-| Cursor | `.` | 本リポジトリ（ルール・設定） |
-| Sift-iOS | `../Sift-iOS` | iOS 写真整理アプリ |
-| DiscordBot | `../DiscordBot` | Discord Bot（TypeScript） |
+| Folder | Path | Description |
+|--------|------|-------------|
+| Cursor | `.` | This repository for shared rules and settings |
+| Sift-iOS | `../Sift-iOS` | iOS photo organization app |
+| DiscordBot | `../DiscordBot` | Discord bot in TypeScript |
 
 ## Setup
 
-1. このリポジトリを `Cursor` として clone する。
-2. 必要な関連リポジトリを `Cursor` と同じ親ディレクトリ配下に配置する。
-3. Cursor で `Cursor.code-workspace` を開く。
+1. Clone this repository as `Cursor`.
+2. Place related repositories under the same parent directory as `Cursor`.
+3. Open `Cursor.code-workspace` in Cursor.
 
-推奨ディレクトリ構成:
+Recommended directory layout:
 
 ```text
 Git/
@@ -55,24 +55,24 @@ Git/
 └── DiscordBot
 ```
 
-## ドキュメント案内
+## Documentation
 
-- 全体索引: `.cursor/README.md`
-- MCP 設定: `.cursor/Document/MCP.md`
-- ルール索引: `.cursor/rules/README.md`
-- スクリプト一覧: `.cursor/scripts/README.md`
-- Agent 定義方針: `.cursor/agents/README.md`
+- Main index: `.cursor/README.md`
+- MCP setup guide: `.cursor/Document/MCP.md`
+- Rules index: `.cursor/rules/README.md`
+- Script index: `.cursor/scripts/README.md`
+- Agent conventions: `.cursor/agents/README.md`
 
-## ルール一覧
+## Rules
 
-| ルール | 適用条件 | 内容 |
-|--------|----------|------|
-| `git-rules.mdc` | 常時適用 | Conventional Commits、main only ブランチ戦略、SemVer、`v1.0.0` 開始のタグ運用 |
-| `readme-rules.mdc` | `**/README.md` 編集時 | README の構造・バッジ・スタイル |
-| `context7-rules.mdc` | 常時適用 | ライブラリドキュメント取得時に Context7 MCP を使用 |
-| `drawio-rules.mdc` | 要時参照 | drawio MCP で図・ダイアグラムを作成・編集する際のガイド |
+| Rule | Applies when | Purpose |
+|------|--------------|---------|
+| `git-rules.mdc` | Always | Conventional Commits, main-only workflow, SemVer, and release tags starting from `v1.0.0` |
+| `readme-rules.mdc` | When editing `**/README.md` | README structure, badges, and writing style |
+| `context7-rules.mdc` | Always | Use Context7 MCP when fetching library documentation |
+| `drawio-rules.mdc` | As needed | Guidance for creating and editing diagrams with draw.io MCP |
 
-Git 運用の詳細は `.cursor/rules/README.md` から辿れる。
+For more detail on Git workflow rules, start from `.cursor/rules/README.md`.
 
 ## License
 

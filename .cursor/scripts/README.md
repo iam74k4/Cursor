@@ -1,21 +1,21 @@
 # Scripts
 
-`.cursor/scripts/` 配下の補助スクリプト一覧。
+Index of helper scripts under `.cursor/scripts/`.
 
-## 前提
+## Prerequisites
 
-- このディレクトリのスクリプトは Cursor から直接参照されることがある
-- `drawio-mcp.sh` は `bash`、`pkill`、`lsof`、`ps` を使う
-- Windows では WSL または Git Bash など Unix 系コマンドが使える環境を前提とする
+- Scripts in this directory may be referenced directly by Cursor.
+- `drawio-mcp.sh` uses `bash`, `pkill`, `lsof`, and `ps`.
+- On Windows, it assumes an environment such as WSL or Git Bash with Unix-style commands available.
 
-## 一覧
+## Available Scripts
 
-| スクリプト | 用途 |
-|------------|------|
-| `drawio-mcp.sh` | drawio MCP 起動前に既存プロセスを終了し、ポート競合を防ぐ |
+| Script | Purpose |
+|--------|---------|
+| `drawio-mcp.sh` | Stops existing processes before starting draw.io MCP to avoid port conflicts |
 
-## 使い分け
+## Related Documents
 
-- 全体索引は `../README.md`
-- MCP の設定方法や接続先の説明は `../Document/MCP.md`
-- draw.io 用ルールの確認は `../rules/MCP/drawio-rules.mdc`
+- See `../README.md` for the main `.cursor` index.
+- See `../Document/MCP.md` for MCP setup and server details.
+- See `../rules/MCP/drawio-rules.mdc` for draw.io-specific rules.

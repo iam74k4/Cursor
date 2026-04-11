@@ -45,6 +45,13 @@ Recommended heading order:
 
 - Always set the language: ` ```bash `, ` ```ts `, ` ```json `, etc.
 
+## Diagrams
+
+- Prefer Mermaid for diagrams embedded in Markdown, especially in `README.md` and architecture-focused documents.
+- Use diagrams when they clarify repository structure, system boundaries, data flow, or step-by-step workflows better than prose alone.
+- Keep Mermaid diagrams small, readable, and close to the section they explain so the Markdown stays easy to maintain.
+- Use draw.io only when Mermaid is not expressive enough or when a richer diagram is clearly needed.
+
 ## License
 
 - State license name or link to a LICENSE file.

@@ -13,11 +13,11 @@
 - Split files or subdirectories by role.
 - Avoid creating agents whose purpose is unclear from the name alone.
 - Keep persistent behavior rules under `rules/` via `../rules/README.md`; keep execution-focused intent in agent files.
-- If an agent depends on MCP or scripts, include references to `../Document/MCP.md` or `../scripts/README.md`.
+- If an agent depends on MCP or scripts, include references to `../docs/mcp.md` or `../scripts/README.md`.
 
 ## Related
 
 - Main index: `../README.md`
-- MCP guide: `../Document/MCP.md`
+- MCP guide: `../docs/mcp.md`
 - Shared rules: `../rules/README.md`
 - Helper scripts: `../scripts/README.md`

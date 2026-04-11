@@ -5,12 +5,13 @@
       "path": "."
     },
     {
-      "name": "Sift-iOS",
-      "path": "../Sift-iOS"
+      "path": "../DiscordBot"
     },
     {
-      "name": "DiscordBot",
-      "path": "../DiscordBot"
+      "path": "../Portfolio"
+    },
+    {
+      "path": "../MotionDesktop"
     }
   ],
   "settings": {

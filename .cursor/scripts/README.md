@@ -17,5 +17,5 @@ Index of helper scripts under `.cursor/scripts/`.
 ## Related Documents
 
 - See `../README.md` for the main `.cursor` index.
-- See `../Document/MCP.md` for MCP setup and server details.
-- See `../rules/MCP/drawio-rules.mdc` for draw.io-specific rules.
+- See `../docs/mcp.md` for MCP setup and server details.
+- See `../rules/mcp/drawio-rules.mdc` for draw.io-specific rules.

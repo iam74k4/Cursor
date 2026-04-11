@@ -36,8 +36,8 @@ Browser / Web tools are often enabled through plugins, so they may not require `
 |------|---------|
 | `.cursor/README.md` | Main index for the `.cursor/` directory |
 | `.cursor/scripts/README.md` | Helper script index |
-| `.cursor/rules/MCP/context7-rules.mdc` | Rules for using Context7 |
-| `.cursor/rules/MCP/drawio-rules.mdc` | Rules for using draw.io MCP |
+| `.cursor/rules/mcp/context7-rules.mdc` | Rules for using Context7 |
+| `.cursor/rules/mcp/drawio-rules.mdc` | Rules for using draw.io MCP |
 
 ## Configuration Paths
 
@@ -123,7 +123,7 @@ Lets the AI create and edit diagrams in draw.io (diagrams.net).
 2. Open http://localhost:3000/ in your browser.
 3. Ask the agent to create or edit diagrams.
 
-**Rule file**: `.cursor/rules/MCP/drawio-rules.mdc`
+**Rule file**: `.cursor/rules/mcp/drawio-rules.mdc`
 
 ---
 

@@ -36,6 +36,7 @@ Browser / Web tools are often enabled through plugins, so they may not require `
 |------|---------|
 | `.cursor/README.md` | Main index for the `.cursor/` directory |
 | `.cursor/scripts/README.md` | Helper script index |
+| `mcp/markitdown/` | Docker-based MarkItDown MCP setup |
 | `.cursor/rules/mcp/context7-rules.mdc` | Rules for using Context7 |
 | `.cursor/rules/mcp/drawio-rules.mdc` | Rules for using draw.io MCP |
 
@@ -127,6 +128,32 @@ Lets the AI create and edit diagrams in draw.io (diagrams.net).
 
 ---
 
+### 4. MarkItDown
+
+Converts documents, web pages, images, audio metadata, and other supported resources to Markdown through Microsoft's MarkItDown MCP server.
+
+| Item | Value |
+|------|-------|
+| Connection | Local, via Docker and STDIO |
+| Tool | `convert_to_markdown(uri)` |
+| Supported URI schemes | `http:`, `https:`, `file:`, `data:` |
+| Config example | `mcp/markitdown/cursor-mcp.example.json` |
+
+**Usage**
+
+1. Build the local image.
+   ```bash
+   docker build -t cursor-markitdown-mcp:latest mcp/markitdown
+   ```
+2. Add the example server entry from `mcp/markitdown/cursor-mcp.example.json` to `~/.cursor/mcp.json`.
+3. Adjust the bind mount if the server needs to read local files outside the repository.
+4. Fully restart Cursor.
+5. Ask the agent to convert a URI to Markdown.
+
+The server runs with the privileges of the Docker container user and can read mounted files. Keep the default local STDIO setup unless you have reviewed the security considerations in `mcp/markitdown/README.md`.
+
+---
+
 ## Plugin-Based MCP
 
 These do not require `mcp.json` and are enabled through plugin installation.
@@ -180,6 +207,7 @@ See `.cursor/scripts/README.md` for the script index.
 2. Check status in `Cursor Settings > MCP`.
 3. Refresh the tool list.
 4. If the issue is with GitHub MCP, review the PAT configuration in `.cursor/mcp.json`.
+5. If the issue is with MarkItDown MCP, confirm Docker is installed and that the image was built from `mcp/markitdown`.
 
 ### draw.io returns errors
 
@@ -206,3 +234,4 @@ If you use `nvm`, run these commands in a fresh terminal session.
 - [Context7](https://context7.com/docs/overview)
 - [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
 - [lgazo/drawio-mcp-server](https://github.com/lgazo/drawio-mcp-server)
+- [Microsoft MarkItDown MCP](https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp)

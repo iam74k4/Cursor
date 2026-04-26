@@ -28,6 +28,8 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
 └── scripts/
     ├── README.md              # Script index
     └── drawio-mcp.sh          # draw.io MCP startup wrapper
+mcp/
+└── markitdown/                # Docker-based MarkItDown MCP setup
 ```
 
 ## Workspace
@@ -61,6 +63,7 @@ Git/
 
 - Main index: `.cursor/README.md`
 - MCP setup guide: `.cursor/docs/mcp.md`
+- MCP integration assets: `mcp/README.md`
 - Rules index: `.cursor/rules/README.md`
 - Script index: `.cursor/scripts/README.md`
 - Agent conventions: `.cursor/agents/README.md`

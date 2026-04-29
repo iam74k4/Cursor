@@ -35,6 +35,12 @@
     // シングルクリックでプレビュータブにしない（複数リポジトリ間の行き来でタブが消えにくくなる）
     "workbench.editor.enablePreview": false,
 
+    // --- Navigation（構成把握・コードマップに相当する UI を補助）---
+    // エディタ上のパンくず：ファイルパスとシンボル階層をたどれる
+    "breadcrumbs.enabled": true,
+    // アクティブファイルをエクスプローラで自動ハイライト（どのルート配下か把握しやすい）
+    "explorer.autoReveal": true,
+
     // 新規統合ターミナルの開始ディレクトリ。Git 配下にまとめて作業する想定で Cursor の親フォルダへ。
     "terminal.integrated.cwd": "${workspaceFolder:Cursor}/..",
     // ターミナルに保持するスクロールバック行数

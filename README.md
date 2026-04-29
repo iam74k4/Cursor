@@ -77,6 +77,41 @@ flowchart LR
 - **Git status across repos**: **Terminal → Run Task… → Git: status all workspaces** prints `git status -sb` for each folder in order.
 - **Window and tabs**: Workspace settings use `${rootName}` in the window title and **medium** editor labels so it is easier to see which root folder you are in when filenames repeat across repos.
 
+## Workspace navigation (“code map” style tools)
+
+VS Code / Cursor does **not** ship a Visual Studio–style **Code Map** diagram (dependency graph) in the core product. For orientation and structure, use the built-ins below or extensions.
+
+| Goal | Built-in |
+|------|----------|
+| **Tree of symbols** in the open file (classes, functions, headings) | **Outline** view (`View → Appearance → Outline`, or move it next to Explorer) |
+| **Where you are** in path / symbol hierarchy | **Breadcrumbs** (below the editor tab); click segments to navigate |
+| **Bird’s-eye** scroll strip for long files | **Minimap** (`View → Appearance → Minimap`; optional per taste) |
+| **Jump across all roots** by symbol name | **Go to Symbol in Workspace…** — default shortcut is often **Cmd+T** (macOS) / **Ctrl+T** (Windows/Linux) |
+| **Find text** across every folder | **Search** (`Cmd/Ctrl+Shift+F`). Scope is the whole workspace; use “files to include” or restrict to a folder when needed |
+| **Per-repository Git** | **Source Control** — each root is its own repo; pin/hide repos from the “Source Control Repositories” view if the list is noisy |
+| **Whole-codebase questions (Cursor)** | Chat / Composer with **`@Codebase`** or attach folders/files so answers respect this workspace |
+
+Conceptual map (same ideas as the table):
+
+```mermaid
+flowchart TB
+  subgraph file["Current file"]
+    OL[Outline — symbol tree]
+    BR[Breadcrumbs]
+    MM[Minimap optional]
+  end
+  subgraph ws["Workspace"]
+    SYM[Go to Symbol in Workspace]
+    SRC[Search]
+    GIT[Source Control — per repo]
+    CB[@Codebase / Chat]
+  end
+```
+
+Multi-root tip: In the **Explorer**, each workspace folder is a separate root—collapse ones you are not touching to reduce noise.
+
+For language-specific **import or dependency graphs**, use an extension from the Marketplace (examples: npm/TypeScript dependency viewers, Swift module graphs).
+
 ## Setup
 
 1. Clone this repository as `Cursor`.

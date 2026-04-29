@@ -45,7 +45,12 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
 | DiscordBot | `../DiscordBot` | Discord bot in TypeScript |
 | Portfolio | `../Portfolio` | Personal portfolio site |
 | MotionDesktop | `../MotionDesktop` | Motion planning desktop app docs and files |
-| Lincrea | `../Lincrea` | Sibling repo at the same level as `Cursor` (clone if you use it; omit from disk if unused) |
+
+## Workspace tips
+
+- **Build task**: Press **Cmd+Shift+B** (macOS) or **Ctrl+Shift+B** (Windows/Linux) to run **Git: fetch all workspaces** (default build task).
+- **Git status across repos**: **Terminal → Run Task… → Git: status all workspaces** prints `git status -sb` for each folder in order.
+- **Window and tabs**: Workspace settings use `${rootName}` in the window title and **medium** editor labels so it is easier to see which root folder you are in when filenames repeat across repos.
 
 ## Setup
 
@@ -60,8 +65,7 @@ Git/
 ├── Cursor
 ├── DiscordBot
 ├── Portfolio
-├── MotionDesktop
-└── Lincrea        # optional: clone when needed
+└── MotionDesktop
 ```
 
 ## Documentation

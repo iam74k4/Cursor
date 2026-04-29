@@ -23,15 +23,18 @@
     {
       "name": "MotionDesktop",
       "path": "../MotionDesktop"
-    },
-    {
-      "name": "Lincrea",
-      "path": "../Lincrea"
     }
   ],
 
   // ワークスペース全体に効く設定（各リポジトリ内の .vscode/settings.json はそれより優先されることが多い）
   "settings": {
+    // マルチルートで「今どのフォルダのファイルか」をタイトルバーに表示する
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
+    // タブ名にディレクトリを含めやすくし、同名ファイルの取り違いを防ぐ
+    "workbench.editor.labelFormat": "medium",
+    // シングルクリックでプレビュータブにしない（複数リポジトリ間の行き来でタブが消えにくくなる）
+    "workbench.editor.enablePreview": false,
+
     // 新規統合ターミナルの開始ディレクトリ。Git 配下にまとめて作業する想定で Cursor の親フォルダへ。
     "terminal.integrated.cwd": "${workspaceFolder:Cursor}/..",
     // ターミナルに保持するスクロールバック行数
@@ -99,8 +102,8 @@
     ]
   },
 
-  // タスク（ターミナル → タスクの実行、または Cmd/Ctrl+Shift+B で一覧）
-  // Git: fetch all workspaces は各フォルダへの git fetch を並列実行する親タスク
+  // タスク: 「ターミナル → タスクの実行」または Cmd/Ctrl+Shift+B（既定ビルドは Git fetch 全体）
+  // Git: status all workspaces はログが混ざらないよう各リポジトリを順に実行する
   "tasks": {
     "version": "2.0.0",
     "tasks": [
@@ -110,17 +113,36 @@
           "Git: fetch (Cursor)",
           "Git: fetch (DiscordBot)",
           "Git: fetch (Portfolio)",
-          "Git: fetch (MotionDesktop)",
-          "Git: fetch (Lincrea)"
+          "Git: fetch (MotionDesktop)"
         ],
         "dependsOrder": "parallel",
         "problemMatcher": [],
-        // サイレント: タスク実行でターミナルタブを自動で前面にしない
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
         "presentation": {
-          "reveal": "silent",
+          "reveal": "always",
           "panel": "shared",
           "showReuseMessage": false,
           "clear": false
+        }
+      },
+      {
+        "label": "Git: status all workspaces",
+        "dependsOn": [
+          "Git: status (Cursor)",
+          "Git: status (DiscordBot)",
+          "Git: status (Portfolio)",
+          "Git: status (MotionDesktop)"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": true
         }
       },
       {
@@ -176,11 +198,50 @@
         }
       },
       {
-        "label": "Git: fetch (Lincrea)",
+        "label": "Git: status (Cursor)",
         "type": "shell",
-        "command": "git fetch --all --prune",
+        "command": "echo '=== Cursor ===' && git status -sb",
         "options": {
-          "cwd": "${workspaceFolder:Lincrea}"
+          "cwd": "${workspaceFolder:Cursor}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: status (DiscordBot)",
+        "type": "shell",
+        "command": "echo '=== DiscordBot ===' && git status -sb",
+        "options": {
+          "cwd": "${workspaceFolder:DiscordBot}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: status (Portfolio)",
+        "type": "shell",
+        "command": "echo '=== Portfolio ===' && git status -sb",
+        "options": {
+          "cwd": "${workspaceFolder:Portfolio}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: status (MotionDesktop)",
+        "type": "shell",
+        "command": "echo '=== MotionDesktop ===' && git status -sb",
+        "options": {
+          "cwd": "${workspaceFolder:MotionDesktop}"
         },
         "problemMatcher": [],
         "presentation": {

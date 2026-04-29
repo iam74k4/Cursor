@@ -11,28 +11,33 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
 ## Structure
 
 ```text
-.cursor/
-├── README.md                  # Index for the .cursor directory
-├── agents/
-│   └── README.md              # Agent definition placement and conventions
-├── docs/
-│   └── mcp.md                 # MCP server usage guide
-├── rules/
-│   ├── docs/
-│   │   └── readme-rules.mdc   # README structure and style
-│   ├── git/
-│   │   └── git-rules.mdc      # Git workflow and commit conventions
-│   └── mcp/
-│       ├── context7-rules.mdc # Context7 integration rules
-│       └── drawio-rules.mdc   # draw.io MCP diagram guidance
-└── scripts/
-    ├── README.md              # Script index
-    └── drawio-mcp.sh          # draw.io MCP startup wrapper
+.
+├── .editorconfig              # Shared indentation / newline defaults (Editor Config)
+├── Cursor.code-workspace      # Multi-root workspace; open this in Cursor
+├── LICENSE
+├── README.md
+└── .cursor/
+    ├── README.md              # Index for the .cursor directory
+    ├── agents/
+    │   └── README.md          # Agent definition placement and conventions
+    ├── docs/
+    │   └── mcp.md             # MCP server usage guide
+    ├── rules/
+    │   ├── docs/
+    │   │   └── readme-rules.mdc
+    │   ├── git/
+    │   │   └── git-rules.mdc  # Git workflow and commit conventions
+    │   └── mcp/
+    │       ├── context7-rules.mdc
+    │       └── drawio-rules.mdc
+    └── scripts/
+        ├── README.md          # Script index
+        └── drawio-mcp.sh      # draw.io MCP startup wrapper
 ```
 
 ## Workspace
 
-`Cursor.code-workspace` groups the following projects into a multi-root workspace.
+`Cursor.code-workspace` groups the following projects into a multi-root workspace. Keep this table aligned with the `folders` list in that file.
 
 | Folder | Path | Description |
 |--------|------|-------------|
@@ -40,6 +45,7 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
 | DiscordBot | `../DiscordBot` | Discord bot in TypeScript |
 | Portfolio | `../Portfolio` | Personal portfolio site |
 | MotionDesktop | `../MotionDesktop` | Motion planning desktop app docs and files |
+| Lincrea | `../Lincrea` | Sibling repo at the same level as `Cursor` (clone if you use it; omit from disk if unused) |
 
 ## Setup
 
@@ -54,7 +60,8 @@ Git/
 ├── Cursor
 ├── DiscordBot
 ├── Portfolio
-└── MotionDesktop
+├── MotionDesktop
+└── Lincrea        # optional: clone when needed
 ```
 
 ## Documentation

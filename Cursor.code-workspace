@@ -4,6 +4,7 @@
   "$schema": "https://json.schemastore.org/code-workspace",
 
   // 左のエクスプローラに並ぶフォルダ一覧。順番は表示順。
+  // README の「Workspace」表と整合させること（追加・削除時は両方更新）。
   // name: タスクや ${workspaceFolder:名前} で参照するラベル（path のフォルダ名と一致させると分かりやすい）
   // path: このファイル（Cursor リポジトリのルート）から見た相対パス
   "folders": [

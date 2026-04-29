@@ -2,6 +2,10 @@
 
 Entry point for rules, documents, and helper scripts under `.cursor/`.
 
+## Workspace
+
+The multi-root workspace file lives at the repository root: `Cursor.code-workspace`. Which folders are included is documented in the root **`README.md` → Workspace** section—update both places together when adding or removing a sibling repo.
+
 ## Agents
 
 | Path | Purpose |

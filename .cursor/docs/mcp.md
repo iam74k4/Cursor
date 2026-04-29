@@ -38,6 +38,7 @@ Browser / Web tools are often enabled through plugins, so they may not require `
 | `.cursor/scripts/README.md` | Helper script index |
 | `.cursor/rules/mcp/context7-rules.mdc` | Rules for using Context7 |
 | `.cursor/rules/mcp/drawio-rules.mdc` | Rules for using draw.io MCP |
+| `.cursor/rules/mcp/markitdown-rules.mdc` | Rules for using MarkItDown MCP |
 
 ## Configuration Paths
 
@@ -127,6 +128,78 @@ Lets the AI create and edit diagrams in draw.io (diagrams.net).
 
 ---
 
+### 4. MarkItDown (Microsoft)
+
+Converts many document formats (PDF, Office, HTML, images, and more) to Markdown for LLM-oriented workflows, via the official **`markitdown-mcp`** server.
+
+| Item | Value |
+|------|-------|
+| Connection | Local (STDIO recommended) |
+| Python | 3.10 or later |
+| Tool | `convert_to_markdown(uri)` — accepts `http:`, `https:`, `file:`, or `data:` URIs |
+
+**Installation**
+
+```bash
+pip install markitdown-mcp
+```
+
+The package pulls in `markitdown[all]` for broad format support; you usually do not need a separate `markitdown` install.
+
+**Optional: project-local venv** (keeps dependencies off the system Python):
+
+```bash
+cd path/to/Cursor
+python3 -m venv .cursor/venv-markitdown
+.cursor/venv-markitdown/bin/pip install -U pip markitdown-mcp
+```
+
+The venv directory is gitignored. Point `mcp.json` at `.cursor/venv-markitdown/bin/markitdown-mcp`, or use `.cursor/scripts/markitdown-mcp.sh`, which prefers that venv and falls back to `markitdown-mcp` on your `PATH`.
+
+**`mcp.json` example** (merge with your existing `mcpServers`; do not commit secrets):
+
+```json
+{
+  "mcpServers": {
+    "markitdown": {
+      "command": "markitdown-mcp",
+      "args": []
+    }
+  }
+}
+```
+
+With the wrapper script (use an **absolute** path to the script on your machine):
+
+```json
+{
+  "mcpServers": {
+    "markitdown": {
+      "command": "/absolute/path/to/Cursor/.cursor/scripts/markitdown-mcp.sh",
+      "args": []
+    }
+  }
+}
+```
+
+**HTTP / SSE (optional)** — alternative to STDIO; default bind is localhost (e.g. port `3001`):
+
+```bash
+markitdown-mcp --http --host 127.0.0.1 --port 3001
+```
+
+This does not conflict with draw.io on ports 3000 / 3333. Prefer STDIO unless you have a reason to run HTTP.
+
+**Security**: the server has no authentication. It runs with your user privileges and can read local files you pass as `file:` URIs and fetch network URLs. Use only with trusted agents on your machine; do not bind HTTP/SSE to non-localhost interfaces unless you understand the risk. See the [upstream security notes](https://github.com/microsoft/markitdown/blob/main/packages/markitdown-mcp/README.md).
+
+**Rule file**: `.cursor/rules/mcp/markitdown-rules.mdc`
+
+**CLI (reference)**: you can also run `markitdown <file> -o out.md` from the same environment; MCP is the primary integration for Cursor agents.
+
+**Docker**: the upstream README documents a Docker workflow for MCP; use that if you prefer container isolation.
+
+---
+
 ## Plugin-Based MCP
 
 These do not require `mcp.json` and are enabled through plugin installation.
@@ -159,6 +232,18 @@ It performs the following steps:
 
 **Referenced from `mcp.json`**: use this script in the draw.io `command` field in `~/.cursor/mcp.json`.
 
+---
+
+### markitdown-mcp.sh
+
+**Path**: `.cursor/scripts/markitdown-mcp.sh`
+
+**Purpose**: Runs `markitdown-mcp` from `.cursor/venv-markitdown` when that venv exists; otherwise runs `markitdown-mcp` from your `PATH`. Override the venv location with `MARKITDOWN_MCP_VENV` if needed.
+
+Uses `bash`. On Windows, use WSL or Git Bash.
+
+**Referenced from `mcp.json`**: set `command` to the **absolute** path of this script.
+
 See `.cursor/scripts/README.md` for the script index.
 
 ---
@@ -168,7 +253,8 @@ See `.cursor/scripts/README.md` for the script index.
 | Item | Value |
 |------|-------|
 | Node.js | v20 or later (LTS recommended) |
-| Version management | `nvm` recommended |
+| Python | 3.10 or later (for MarkItDown MCP) |
+| Version management | `nvm` for Node; `venv` recommended for MarkItDown |
 
 ---
 
@@ -199,6 +285,16 @@ npx -v
 
 If you use `nvm`, run these commands in a fresh terminal session.
 
+### MarkItDown / `markitdown-mcp` does not start
+
+1. **Verify the binary**
+   ```bash
+   which markitdown-mcp
+   markitdown-mcp --help
+   ```
+2. **If `command not found`**: install with `pip install markitdown-mcp` or create `.cursor/venv-markitdown` as above and either use the venv’s full path in `mcp.json` or the `markitdown-mcp.sh` wrapper.
+3. **If Cursor still cannot find it**: put the venv `bin` directory on `PATH` via the `env` field in `mcp.json`, or use an absolute `command` path (same pattern as Node/`nvm` for draw.io).
+
 ---
 
 ## References
@@ -206,3 +302,4 @@ If you use `nvm`, run these commands in a fresh terminal session.
 - [Context7](https://context7.com/docs/overview)
 - [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
 - [lgazo/drawio-mcp-server](https://github.com/lgazo/drawio-mcp-server)
+- [microsoft/markitdown](https://github.com/microsoft/markitdown) (includes `markitdown-mcp`)

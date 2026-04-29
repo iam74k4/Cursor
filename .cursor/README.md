@@ -27,6 +27,7 @@ The multi-root workspace file lives at the repository root: `Cursor.code-workspa
 | `rules/docs/readme-rules.mdc` | README structure, writing rules, and Markdown diagram guidance |
 | `rules/mcp/context7-rules.mdc` | Rules for when to use Context7 |
 | `rules/mcp/drawio-rules.mdc` | Helper rules for draw.io MCP usage |
+| `rules/mcp/markitdown-rules.mdc` | Helper rules for MarkItDown MCP usage |
 
 ## Scripts
 
@@ -34,6 +35,7 @@ The multi-root workspace file lives at the repository root: `Cursor.code-workspa
 |------|---------|
 | `scripts/README.md` | Script index and prerequisites |
 | `scripts/drawio-mcp.sh` | Wrapper with cleanup before starting draw.io MCP |
+| `scripts/markitdown-mcp.sh` | Prefer local venv then PATH for `markitdown-mcp` |
 
 ## Quick Start
 

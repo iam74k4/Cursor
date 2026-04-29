@@ -29,10 +29,12 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
     │   │   └── git-rules.mdc  # Git workflow and commit conventions
     │   └── mcp/
     │       ├── context7-rules.mdc
-    │       └── drawio-rules.mdc
+    │       ├── drawio-rules.mdc
+    │       └── markitdown-rules.mdc
     └── scripts/
         ├── README.md          # Script index
-        └── drawio-mcp.sh      # draw.io MCP startup wrapper
+        ├── drawio-mcp.sh      # draw.io MCP startup wrapper
+        └── markitdown-mcp.sh # MarkItDown MCP (venv or PATH)
 ```
 
 Summary (same layout as a diagram):
@@ -144,6 +146,7 @@ Git/
 | `readme-rules.mdc` | When editing `**/README.md` | README structure, badges, writing style, and Markdown diagram guidance |
 | `context7-rules.mdc` | Always | Use Context7 MCP when fetching library documentation |
 | `drawio-rules.mdc` | As needed | Guidance for creating and editing diagrams with draw.io MCP |
+| `markitdown-rules.mdc` | As needed | Guidance for converting documents to Markdown with MarkItDown MCP |
 
 For more detail on Git workflow rules, start from `.cursor/rules/README.md`.
 

@@ -18,6 +18,7 @@ Index of shared rules under `.cursor/rules/`.
 | `docs/readme-rules.mdc` | README structure, badges, heading order, and diagram guidance |
 | `mcp/context7-rules.mdc` | Use Context7 when retrieving current library documentation |
 | `mcp/drawio-rules.mdc` | Guidance for creating and editing diagrams with draw.io MCP |
+| `mcp/markitdown-rules.mdc` | Guidance for converting documents to Markdown with MarkItDown MCP |
 
 ## How to Use
 

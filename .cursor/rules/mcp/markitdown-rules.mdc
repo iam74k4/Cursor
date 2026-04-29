@@ -1,0 +1,35 @@
+---
+description: Rules for converting documents to Markdown with MarkItDown MCP
+alwaysApply: false
+---
+
+# MarkItDown MCP
+
+Use MarkItDown MCP when you need to turn **PDFs, Office documents, HTML, images, or other supported files** into **Markdown** for summarization, quoting, or analysis in Cursor (trusted local use only).
+
+## When to use
+
+- Ingesting attached or linked documents into a text workflow
+- Converting a local file or remote URL to Markdown before editing or summarizing
+- You already have MarkItDown MCP enabled in **Cursor Settings → MCP**
+
+## Tooling
+
+- Primary tool: **`convert_to_markdown(uri)`** with a `http:`, `https:`, `file:`, or `data:` URI
+- Prefer MCP from Agent mode; check the server’s tool schema before calling if unsure
+
+## `file:` URIs
+
+- Use a proper **file URI** (e.g. `file:///Users/name/doc.pdf` on macOS). Encode spaces and special characters.
+- The server runs as **your user** and can read any path you pass; only convert files the user expects to expose.
+
+## Security and limitations
+
+- **No authentication** on the server; do not expose HTTP/SSE beyond localhost unless you accept the upstream security model
+- Output is **LLM-oriented**, not guaranteed to be pixel-perfect for human publishing
+- If MarkItDown is unavailable, fall back to asking the user to paste excerpts or use another conversion path
+
+## Setup
+
+- Installation and `mcp.json` examples: `.cursor/docs/mcp.md` (MarkItDown section)
+- Optional venv + wrapper: `.cursor/scripts/markitdown-mcp.sh`

@@ -13,9 +13,11 @@ Index of helper scripts under `.cursor/scripts/`.
 | Script | Purpose |
 |--------|---------|
 | `drawio-mcp.sh` | Stops existing processes before starting draw.io MCP to avoid port conflicts |
+| `markitdown-mcp.sh` | Runs `markitdown-mcp` from `.cursor/venv-markitdown` if present, otherwise from `PATH` (`MARKITDOWN_MCP_VENV` overrides the venv path) |
 
 ## Related Documents
 
 - See `../README.md` for the main `.cursor` index.
 - See `../docs/mcp.md` for MCP setup and server details.
 - See `../rules/mcp/drawio-rules.mdc` for draw.io-specific rules.
+- See `../rules/mcp/markitdown-rules.mdc` for MarkItDown MCP usage.

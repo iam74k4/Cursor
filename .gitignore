@@ -11,6 +11,7 @@ Thumbs.db
 .env
 .env.*
 .cursor/mcp.json
+.cursor/venv-markitdown/
 
 # Logs
 *.log

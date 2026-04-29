@@ -1,20 +1,163 @@
 {
+  "$schema": "https://json.schemastore.org/code-workspace",
   "folders": [
     {
       "name": "Cursor",
       "path": "."
     },
     {
+      "name": "DiscordBot",
       "path": "../DiscordBot"
     },
     {
+      "name": "Portfolio",
       "path": "../Portfolio"
     },
     {
+      "name": "MotionDesktop",
       "path": "../MotionDesktop"
+    },
+    {
+      "name": "Lincrea",
+      "path": "../Lincrea"
     }
   ],
   "settings": {
-    "terminal.integrated.cwd": "${workspaceFolder}/.."
+    "terminal.integrated.cwd": "${workspaceFolder:Cursor}/..",
+    "terminal.integrated.scrollback": 5000,
+
+    "git.autoFetch": true,
+    "git.autofetchPeriod": 180,
+    "git.pruneOnFetch": true,
+    "scm.defaultViewMode": "tree",
+    "scm.repositories.visible": 10,
+
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+      "**/.DS_Store": true
+    },
+    "explorer.excludeGitIgnore": true,
+
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/**": true,
+      "**/.next/**": true,
+      "**/out/**": true,
+      "**/dist/**": true,
+      "**/build/**": true,
+      "**/target/**": true,
+      "**/coverage/**": true,
+      "**/.turbo/**": true,
+      "**/.cache/**": true,
+      "**/.venv/**": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/out": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/target": true,
+      "**/coverage": true,
+      "**/.turbo": true,
+      "**/.cache": true,
+      "**/.venv": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "editorconfig.editorconfig"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Git: fetch all workspaces",
+        "dependsOn": [
+          "Git: fetch (Cursor)",
+          "Git: fetch (DiscordBot)",
+          "Git: fetch (Portfolio)",
+          "Git: fetch (MotionDesktop)",
+          "Git: fetch (Lincrea)"
+        ],
+        "dependsOrder": "parallel",
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared",
+          "showReuseMessage": false,
+          "clear": false
+        }
+      },
+      {
+        "label": "Git: fetch (Cursor)",
+        "type": "shell",
+        "command": "git fetch --all --prune",
+        "options": {
+          "cwd": "${workspaceFolder:Cursor}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: fetch (DiscordBot)",
+        "type": "shell",
+        "command": "git fetch --all --prune",
+        "options": {
+          "cwd": "${workspaceFolder:DiscordBot}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: fetch (Portfolio)",
+        "type": "shell",
+        "command": "git fetch --all --prune",
+        "options": {
+          "cwd": "${workspaceFolder:Portfolio}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: fetch (MotionDesktop)",
+        "type": "shell",
+        "command": "git fetch --all --prune",
+        "options": {
+          "cwd": "${workspaceFolder:MotionDesktop}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "Git: fetch (Lincrea)",
+        "type": "shell",
+        "command": "git fetch --all --prune",
+        "options": {
+          "cwd": "${workspaceFolder:Lincrea}"
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "silent",
+          "panel": "shared"
+        }
+      }
+    ]
   }
 }

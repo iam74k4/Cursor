@@ -13,6 +13,7 @@
 - Split files or subdirectories by role.
 - Avoid creating agents whose purpose is unclear from the name alone.
 - Keep persistent behavior rules under `rules/` via `../rules/README.md`; keep execution-focused intent in agent files.
+- MCP-specific behavior (GitHub, Context7, draw.io, MarkItDown, etc.): see `../rules/mcp/` and `../docs/mcp.md`.
 - If an agent depends on MCP or scripts, include references to `../docs/mcp.md` or `../scripts/README.md`.
 
 ## Related

@@ -1,0 +1,28 @@
+---
+description: Rules for using GitHub MCP (issues, PRs, search, comments)
+alwaysApply: false
+---
+
+# GitHub MCP
+
+Use GitHub MCP when the task needs **data or actions on GitHub** that are faster or clearer via the API than manual copy-paste: issues, pull requests, comments, search, or lightweight repo metadata.
+
+## Prerequisites
+
+- GitHub MCP is configured and enabled under **Cursor Settings → MCP**
+- Setup, PAT, and `mcp.json` patterns: `.cursor/docs/mcp.md` (GitHub section)
+
+## Usage
+
+1. Prefer GitHub MCP tools for **listing, searching, creating, or updating** issues and PRs when the user expects GitHub as the source of truth.
+2. **Inspect tool schemas** (MCP tool descriptors) before calling so arguments match the server version you have.
+3. **Do not paste** Personal Access Tokens or other secrets into chat; tokens belong only in local `mcp.json` (or host-supported secret mechanisms), never in commits.
+
+## Scope and safety
+
+- Create or change **only** what the user asked for (issues, PRs, comments). Confirm destructive or broad actions (e.g. mass edits) when unclear.
+- Match **PAT scopes** to the operations you need (see GitHub’s token docs). Prefer least privilege (e.g. fine-grained tokens limited to the relevant repos).
+
+## If GitHub MCP is unavailable
+
+- Use the GitHub web UI or `gh` CLI as the user prefers, and summarize results in the reply.

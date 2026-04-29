@@ -38,6 +38,7 @@ Browser / Web tools are often enabled through plugins, so they may not require `
 | `.cursor/scripts/README.md` | Helper script index |
 | `.cursor/rules/mcp/context7-rules.mdc` | Rules for using Context7 |
 | `.cursor/rules/mcp/drawio-rules.mdc` | Rules for using draw.io MCP |
+| `.cursor/rules/mcp/github-rules.mdc` | Rules for using GitHub MCP |
 | `.cursor/rules/mcp/markitdown-rules.mdc` | Rules for using MarkItDown MCP |
 
 ## Configuration Paths
@@ -104,6 +105,10 @@ Used for creating, managing, and searching issues and pull requests.
 3. Fully restart Cursor.
 
 If you plan to use `repo`-level operations, make sure the PAT includes the necessary repository permissions.
+
+**Security**: treat the PAT like a password—do not commit it, do not paste it into prompts, and rotate it if exposed. Prefer least-privilege tokens (e.g. fine-grained) scoped to the repos you need.
+
+**Rule file**: `.cursor/rules/mcp/github-rules.mdc`
 
 ---
 

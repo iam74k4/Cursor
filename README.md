@@ -35,6 +35,20 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
         └── drawio-mcp.sh      # draw.io MCP startup wrapper
 ```
 
+Summary (same layout as a diagram):
+
+```mermaid
+flowchart TB
+  CW["Cursor.code-workspace"]
+  EC[".editorconfig"]
+  META["README.md · LICENSE"]
+  DC[".cursor/"]
+  DC --> R["rules/ · git, docs, mcp"]
+  DC --> DOC["docs/mcp.md"]
+  DC --> AG["agents/"]
+  DC --> SC["scripts/"]
+```
+
 ## Workspace
 
 `Cursor.code-workspace` groups the following projects into a multi-root workspace. Keep this table aligned with the `folders` list in that file.
@@ -45,6 +59,17 @@ It centralizes Cursor rules, MCP documentation, and helper scripts so multiple p
 | DiscordBot | `../DiscordBot` | Discord bot in TypeScript |
 | Portfolio | `../Portfolio` | Personal portfolio site |
 | MotionDesktop | `../MotionDesktop` | Motion planning desktop app docs and files |
+
+Multi-root layout (folders appear together in the Explorer when you open the workspace file):
+
+```mermaid
+flowchart LR
+  OPEN([Cursor.code-workspace])
+  OPEN --> Cursor
+  OPEN --> DiscordBot
+  OPEN --> Portfolio
+  OPEN --> MotionDesktop
+```
 
 ## Workspace tips
 
